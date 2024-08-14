@@ -4,10 +4,9 @@
   border: 1px solid $accent-color;
   border-radius: 0.4em;
   padding: 10px 22px;
+  font-weight: 600;
+  font-size: 1em;
   cursor: pointer;
-  &:focus {
-    outline: 1px solid rgb(255, 255, 255);
-  }
   
   &.filled {
     background-color: $accent-color;
@@ -15,7 +14,7 @@
   }
   &.outlined {
     background-color: transparent;
-    color: rgb(255, 255, 255, 1);
+    color: $light-color;
   }
   &:hover {
     &.outlined {
@@ -24,8 +23,9 @@
       transition: background-color 0.2s ease;
     }
     &.filled {
-      filter: brightness(0.9);
-      transition: filter 0.2s ease;
+      background-color: $accent-muted-color;
+      border: 1px solid $accent-muted-color;
+      transition: all 0.2s ease;
     }
   }
   &:active {

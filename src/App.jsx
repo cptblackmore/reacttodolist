@@ -7,9 +7,8 @@ function App() {
       <div className='App'>
         <Logo/>
         <TaskList/>
-        <TaskList/>
       </div>
   )
 }
 
-export default App
+export default App;

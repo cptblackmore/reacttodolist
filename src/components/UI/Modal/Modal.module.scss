@@ -1,7 +1,9 @@
 @import '../../../styles/colors';
 
 .modal {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   right: 0;
@@ -14,14 +16,8 @@
 
 .modalContent {
   background-color: $dark-color;
-  border: 1px solid $accent-color;
+  border: 1px solid $light-color;
   padding: 10px;
   border-radius: 0.8em;
   min-width: 200px;
-}
-
-.modal.active {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
