@@ -1,36 +1,36 @@
 @import '../../../styles/colors';
 
 .checkbox {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
 }
 
 .customCheckbox {
-    position: relative;
-    width: 1em;
-    height: 1em;
-    flex-shrink: 0; 
-    border: 1px solid #adb5bd;
-    border-radius: 0.25em;
-        &.checked {
-            background-color: $accent-color;
-            border-color: $accent-color;
-            background-size: contain;
-            background-repeat: no-repeat;
-
-            &:focus {
-                outline: 1px solid rgba($accent-color, 0.5);
-            }
-        }
+  position: relative;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0; 
+  border: 1px solid #adb5bd;
+  border-radius: 0.25em;
+    &.checked {
+      background-color: $accent-color;
+      border-color: $accent-color;
+      background-size: contain;
+      background-repeat: no-repeat;
+      
+      &:focus {
+        outline: 1px solid rgba($accent-color, 0.5);
+      }
+    }
 }
 
 .icon {
-    display: block;
-    position: absolute;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 1em;
-    height: 1em;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 1em;
+  height: 1em;
 }

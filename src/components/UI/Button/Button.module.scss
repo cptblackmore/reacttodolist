@@ -1,34 +1,34 @@
 @import '../../../styles/colors';
 
 .button {
-    border: 1px solid $accent-color;
-    border-radius: 0.4em;
-    padding: 10px 22px;
-    cursor: pointer;
-    &:focus {
-        outline: 1px solid rgb(255, 255, 255);
-    }
-    
-    &.filled {
-        background-color: $accent-color;
-        color: $dark-color;
-    }
+  border: 1px solid $accent-color;
+  border-radius: 0.4em;
+  padding: 10px 22px;
+  cursor: pointer;
+  &:focus {
+    outline: 1px solid rgb(255, 255, 255);
+  }
+  
+  &.filled {
+    background-color: $accent-color;
+    color: $dark-color;
+  }
+  &.outlined {
+    background-color: transparent;
+    color: rgb(255, 255, 255, 1);
+  }
+  &:hover {
     &.outlined {
-        background-color: transparent;
-        color: rgb(255, 255, 255, 1);
+      background-color: $accent-color;
+      color: $dark-color;
+      transition: background-color 0.2s ease;
     }
-    &:hover {
-        &.outlined {
-            background-color: $accent-color;
-            color: $dark-color;
-            transition: background-color 0.2s ease;
-        }
-        &.filled {
-            filter: brightness(0.9);
-            transition: filter 0.2s ease;
-        }
+    &.filled {
+      filter: brightness(0.9);
+      transition: filter 0.2s ease;
     }
-    &:active {
-        transform: scale(98%) translateY(1px);
-    }
+  }
+  &:active {
+    transform: scale(98%) translateY(1px);
+  }
 }

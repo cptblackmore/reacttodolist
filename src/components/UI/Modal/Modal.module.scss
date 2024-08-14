@@ -1,27 +1,27 @@
 @import '../../../styles/colors';
 
 .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 100;
-    padding: 10px;
-    background-color: rgb(0, 0, 0, 0.7);
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding: 10px;
+  background-color: rgb(0, 0, 0, 0.7);
 }
 
 .modalContent {
-    background-color: $dark-color;
-    border: 1px solid $accent-color;
-    padding: 10px;
-    border-radius: 0.8em;
-    min-width: 200px;
+  background-color: $dark-color;
+  border: 1px solid $accent-color;
+  padding: 10px;
+  border-radius: 0.8em;
+  min-width: 200px;
 }
 
 .modal.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,26 +1,26 @@
 .taskForm {
-    display: flex;
-    flex-direction: column;
-    gap: 5em;
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    width: 500px;
-
-    &>h2 {
-        margin: 0 0 0.5em 0;
-    }
-    &>Input {
-        height: 2em;
-        padding: 10px;
-        font-size: 1.2rem;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 500px;
+  
+  &>h2 {
+    margin: 0 0 0.5em 0;
+  }
+  &>Input {
+    height: 2em;
+    padding: 10px;
+    font-size: 1.2rem;
+  }
 }
 
 .buttons {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }

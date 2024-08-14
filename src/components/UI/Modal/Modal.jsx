@@ -1,19 +1,21 @@
-import { useContext } from 'react';
-import { ModalContext } from '../../../context/ModalContext';
-import classes from './Modal.module.scss'
+import PropTypes from 'prop-types';
+import classes from './Modal.module.scss';
 
 function Modal({children}) {
-    const { modal, setModal } = useContext(ModalContext);
-    const rootClasses = [classes.modal];
-    if (modal.visible) {
-        rootClasses.push(classes.active);
-    }
+  const rootClasses = [classes.modal];
+  // if () {
+  //     rootClasses.push(classes.active);
+  // }
+  
+  return <div className={rootClasses.join(' ')}>
+  <div className={classes.modalContent}>
+    {children}
+  </div>
+  </div>
+}
 
-    return <div onClick={(e) => {if (e.target === e.currentTarget) setModal(false)}} className={rootClasses.join(' ')}>
-        <div className={classes.modalContent}>
-            {children}
-        </div>
-    </div>
+Modal.propTypes = {
+  children: PropTypes.node.isRequired
 }
 
 export default Modal;

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function AddIcon({color1, color2}) {
   return (
     <svg
@@ -55,6 +57,11 @@ function AddIcon({color1, color2}) {
       </g>
     </svg>
   );
+}
+
+AddIcon.propTypes = {
+  color1: PropTypes.string.isRequired,
+  color2: PropTypes.string.isRequired
 }
 
 export default AddIcon;

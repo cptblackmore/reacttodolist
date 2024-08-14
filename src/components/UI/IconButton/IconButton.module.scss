@@ -1,23 +1,23 @@
 :root {
-    --hover-color: rgb(255, 255, 255);
-    --hover-scale: 1;
+  --hover-color: rgb(255, 255, 255);
+  --hover-scale: 1;
 }
 
 .button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .colorable:hover path {
-    stroke: var(--hover-color);
-    transition: all 0.5s ease;
+  stroke: var(--hover-color);
+  transition: all 0.5s ease;
 }
 
 .scalable:hover {
-    transform: scale(var(--hover-scale));
-    transition: all 0.5s ease;
+  transform: scale(var(--hover-scale));
+  transition: all 0.5s ease;
 }
