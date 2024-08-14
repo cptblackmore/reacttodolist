@@ -1,0 +1,67 @@
+@import 'colors';
+@import 'fonts';
+
+#root {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 15px;
+    text-align: center;
+    font-family:'Optimistic Text', sans-serif
+}
+
+:focus {
+  outline: 1px solid rgba($accent-color, 1);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body {
+  background-color: $dark-color;
+  color: white;
+}
+
+.form-check-input {
+  width: 1.5em;
+  height: 1.5em;
+  background-color: transparent;
+  border-radius: 10%;
+  border: 1.5px solid $accent-color;
+
+  &:checked {
+    background-color: $accent-color;
+    border-color: $accent-color;
+    
+    &[type=checkbox] {
+      --bs-form-check-bg-image: url(./assets/icons/completed.svg);
+    }
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  margin-bottom: 1em;
+  font-family: 'Optimistic Display', sans-serif;
+
+  &>h1 {
+    margin: 0;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  width: 2em;
+  margin-right: 0.5em;
+}
+
+.addButton {
+  margin-top: 1em;
+  width: 4em;
+  height: 4em;
+}
