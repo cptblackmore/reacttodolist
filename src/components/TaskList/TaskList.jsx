@@ -1,43 +1,57 @@
-import { useState } from 'react';
-import AddTaskForm from '../AddTaskForm/AddTaskForm';
+import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import TaskForm from '../TaskForm/TaskForm';
 import IconButton from '../UI/IconButton/IconButton';
 import AddIcon from '../UI/svg/AddIcon';
 import Task from '../UI/Task/Task';
 import classes from './TaskList.module.scss';
 
+function TaskList({storageKey}) {
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem(storageKey)) || []);
+  useEffect(() => {
+    localStorage.setItem(storageKey, JSON.stringify(tasks));
+  }, [tasks, storageKey])
+  // const [tasks, setTasks] = useState([])
+  const [isAddTaskForm, setIsAddTaskForm] = useState(false);
+  const [isEditTaskForm, setIsEditTaskForm] = useState(false);
+  const [taskToEdit, setTaskToEdit] = useState(null);
 
-function TaskList() {
-  // const initialTasks = JSON.parse(localStorage.getItem('tasks'));
-  // const [tasks, setTasks] = useState(initialTasks || []);
-
-  // useEffect(() => {
-  //   localStorage.setItem('tasks', JSON.stringify(tasks))
-  // }, [tasks]);
-
-  const [tasks, setTasks] = useState([])
-  const [modal, setModal] = useState(false);
-
-  function removeTask(index) {
-    setTasks([...tasks].filter((t) => tasks.indexOf(t) !== index));
+  function toggleCheckbox(id) {
+    setTasks(tasks.map(task => task.id === id ? {...task, completed: !task.completed} : task));
+  }
+  function removeTask(id) {
+    setTasks(tasks.filter(task => task.id !== id));
   }
   function addTask(body) {
     if (body) {
-      setTasks([...tasks, {completed: false, body}]);
-      setModal(false);
+      setTasks([...tasks, {id: nanoid(), completed: false, body}]);
+      setIsAddTaskForm(false);
     }
+  }
+  function showEditTaskForm(task) {
+    setTaskToEdit(task);
+    setIsEditTaskForm(true);
+  }
+  function editTask(body) {
+    if (body) {
+      setTasks(tasks.map(task => task.id !== taskToEdit.id ? task : {...task, body}))
+      setIsEditTaskForm(false);
+    } 
   }
 
   return <div className={classes.taskList}>
-    {modal ? <AddTaskForm setModal={setModal} addTask={addTask}/> : ''}
-    {tasks.map((task, index) => {
-      return <Task key={index} 
+    {isAddTaskForm ? <TaskForm title='Добавление задачи' setModal={setIsAddTaskForm} submit={addTask}/> : ''}
+    {isEditTaskForm ? <TaskForm title='Изменение задачи' body={taskToEdit.body} setModal={setIsEditTaskForm} submit={editTask}/> : ''}
+    {tasks.map(task => {
+      return <Task key={task.id} 
                    task={task} 
-                   index={index} 
-                   setTasks={setTasks} 
+                   toggleCheckbox={toggleCheckbox}
                    removeTask={removeTask}
+                   showEditTaskForm={showEditTaskForm}
       />
     })}
-    <IconButton onClick={() => {setModal(true)}}
+    <IconButton onClick={() => {setIsAddTaskForm(true)}}
                 className={classes.addButton}
                 hoverScale='1.2'
     >
@@ -45,6 +59,10 @@ function TaskList() {
                color2={'rgb(30, 30, 30, 1)'}/>
     </IconButton>
   </div>
+}
+
+TaskList.propTypes = {
+  storageKey: PropTypes.string.isRequired
 }
 
 export default TaskList;
