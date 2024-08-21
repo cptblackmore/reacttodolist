@@ -3,9 +3,9 @@ import classes from './IconButton.module.scss';
 
 function IconButton({children, hoverColor, hoverScale, className, ...props}) {
   const combinedClassName = `${classes.button} 
-                             ${hoverColor ? classes.colorable : ''} 
-                             ${hoverScale ? classes.scalable: ''} 
-                             ${className || ''}`
+                             ${hoverColor ? classes.colorable : null} 
+                             ${hoverScale ? classes.scalable: null} 
+                             ${className || null}`
   
   return <button  {...props}
                   className={combinedClassName} 

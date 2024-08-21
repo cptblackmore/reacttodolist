@@ -3,7 +3,7 @@ import classes from './Input.module.scss';
 
 function Input({className, icon, ...props}) {
   const combinedClassName = `${classes.input}
-                       ${className || ''}`
+                             ${className || null}`
 
   return <div className={classes.inputWrapper}>
     <input {...props} className={combinedClassName} 

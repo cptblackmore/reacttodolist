@@ -5,7 +5,7 @@ import classes from './Checkbox.module.scss';
 function Checkbox({checked, toggle, iconColor}) {
   
   return <div onClick={() => {toggle()}}
-    className={`${classes.customCheckbox} ${checked ? classes.checked : ''}`}
+    className={`${classes.customCheckbox} ${checked ? classes.checked : null}`}
     tabIndex='0'
     role='checkbox'
     aria-checked={checked}

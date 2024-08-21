@@ -46,8 +46,8 @@ function TaskList({storageKey}) {
   }
 
   return <div className={classes.taskList}>
-    {isAddTaskForm ? <TaskForm title='Добавление задачи' setIsOpen={setIsAddTaskForm} submit={addTask}/> : ''}
-    {isEditTaskForm ? <TaskForm title='Изменение задачи' body={taskToEdit.body} setIsOpen={setIsEditTaskForm} submit={editTask}/> : ''}
+    {isAddTaskForm ? <TaskForm title='Добавление задачи' setIsOpen={setIsAddTaskForm} submit={addTask}/> : null}
+    {isEditTaskForm ? <TaskForm title='Изменение задачи' body={taskToEdit.body} setIsOpen={setIsEditTaskForm} submit={editTask}/> : null}
     <TaskFilter filter={filter} setFilter={setFilter} />
     {filteredTasks.length !== 0
       ?

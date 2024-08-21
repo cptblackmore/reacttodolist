@@ -10,8 +10,8 @@ function Select({filter, setFilter, className, values}) {
   useCloseByClickOutside(dropdownRef, setIsOpen);
   const [currentValue, setCurrentValue] = useState(filter.category);
   const combinedClassName = `${classes.select}
-                             ${className || ''}
-                             ${isOpen ? classes.isOpen : ''}`
+                             ${className || null}
+                             ${isOpen ? classes.isOpen : null}`
 
   useEffect(() => {setFilter({...filter, category: currentValue})}, [currentValue]);
 
