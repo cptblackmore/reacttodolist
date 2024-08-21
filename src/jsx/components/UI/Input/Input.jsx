@@ -8,9 +8,14 @@ function Input({className, icon, ...props}) {
   return <div className={classes.inputWrapper}>
     <input {...props} className={combinedClassName} 
     />
+    {icon 
+     ?
     <div className={classes.icon}>
-      {icon || null}
+      {icon}
     </div>
+     :
+    null
+    }
   </div>
 }
 

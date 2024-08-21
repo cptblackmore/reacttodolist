@@ -19,6 +19,7 @@ function TaskForm({title, body='', setIsOpen, submit}) {
                placeholder='Введите текст' 
                onChange={e => {setText(e.target.value)}}
                onKeyDown={e => e.key === 'Enter' && submit(text)}
+               className={classes.input}
                autoFocus
         />
       </div>
