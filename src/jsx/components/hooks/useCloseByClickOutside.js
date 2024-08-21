@@ -7,6 +7,7 @@ function useCloseByClickOutside(ref, setIsOpen) {
         setIsOpen(false);
       }
     }
+    
     document.addEventListener('mousedown', handleClick);
     return () => {
       document.removeEventListener('mousedown', handleClick);

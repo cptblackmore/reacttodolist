@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
+import useCloseByClickEscape from '../../hooks/useCloseByClickEscape';
 import useCloseByClickOutside from '../../hooks/useCloseByClickOutside';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
@@ -10,6 +11,7 @@ function TaskForm({title, body='', setIsOpen, submit}) {
   const [text, setText] = useState(body);
   const taskFormRef = useRef(null);
   useCloseByClickOutside(taskFormRef, setIsOpen);
+  useCloseByClickEscape(setIsOpen);
 
   return <Modal>
     <div className={classes.taskForm} ref={taskFormRef}>
