@@ -1,15 +1,18 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
-import Button from '../UI/Button/Button';
-import Input from '../UI/Input/Input';
-import Modal from '../UI/Modal/Modal';
+import { useRef, useState } from 'react';
+import useCloseByClickOutside from '../../hooks/useCloseByClickOutside';
+import Button from '../Button/Button';
+import Input from '../Input/Input';
+import Modal from '../Modal/Modal';
 import classes from './TaskForm.module.scss';
 
-function AddTaskForm({title, body='', setModal, submit}) {
+function TaskForm({title, body='', setIsOpen, submit}) {
   const [text, setText] = useState(body);
+  const taskFormRef = useRef(null);
+  useCloseByClickOutside(taskFormRef, setIsOpen);
 
-  return <Modal onClick={e => e.target === e.currentTarget && setModal(false)}>
-    <div className={classes.taskForm}>
+  return <Modal>
+    <div className={classes.taskForm} ref={taskFormRef}>
       <div className={classes.content}>
         <h2>{title}</h2>
         <Input value={text}   
@@ -20,18 +23,18 @@ function AddTaskForm({title, body='', setModal, submit}) {
         />
       </div>
       <div className={classes.buttons}>
-        <Button onClick={() => {setModal(false)}} variant='outlined'>ОТМЕНИТЬ</Button>
+        <Button onClick={() => {setIsOpen(false)}} variant='outlined'>ОТМЕНИТЬ</Button>
         <Button onClick={() => {submit(text)}}>ПРИНЯТЬ</Button>
       </div>
     </div>
   </Modal>
 }
 
-AddTaskForm.propTypes = {
+TaskForm.propTypes = {
   title: PropTypes.string.isRequired,
   body: PropTypes.string,
-  setModal: PropTypes.func.isRequired,
+  setIsOpen: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired
 }
 
-export default AddTaskForm;
+export default TaskForm;

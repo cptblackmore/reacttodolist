@@ -1,5 +1,5 @@
-import TaskList from './components/TaskList/TaskList';
-import Logo from './components/UI/Logo/Logo';
+import TaskList from './jsx/components/TaskList/TaskList';
+import Logo from './jsx/components/UI/Logo/Logo';
 import './styles/App.scss';
 
 function App() {

@@ -1,0 +1,32 @@
+@import '../../../../../styles/colors';
+
+.liner {
+  fill: none;
+  stroke: $accent-color;
+  stroke-width: 12;
+  stroke-dasharray: 200 100;
+  stroke-linecap: round;
+}
+
+.line {
+  fill: none;
+  stroke: $accent-color;
+  stroke-width: 12;
+  stroke-dasharray: 200 100;
+}
+
+.anim {
+  -webkit-animation: swirls 5s linear infinite;
+  -moz-animation: swirls 5s linear infinite;
+  -o-animation: swirls 5s linear infinite;
+  animation: swirls 5s linear infinite;
+}
+
+@keyframes swirls {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 300;
+  }
+}

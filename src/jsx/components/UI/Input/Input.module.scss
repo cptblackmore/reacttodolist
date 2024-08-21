@@ -1,8 +1,12 @@
-@import '../../../styles/colors';
+@import '../../../../styles/colors';
 
 .input {
   background-color: transparent;
   border: 1px solid $light-color;
   border-radius: 0.4em;
   color: $light-color;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
+  font-size: 1.2em;
 }

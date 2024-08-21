@@ -1,4 +1,4 @@
-@import '../../../styles/colors';
+@import '../../../../styles/colors';
 
 .modal {
   display: flex;
@@ -10,7 +10,7 @@
   bottom: 0;
   left: 0;
   z-index: 100;
-  padding: 10px;
+  padding: 0 20px;
   background-color: rgb(0, 0, 0, 0.7);
 }
 
@@ -19,5 +19,5 @@
   border: 1px solid $light-color;
   padding: 10px;
   border-radius: 0.8em;
-  min-width: 200px;
+  width: 100%;
 }

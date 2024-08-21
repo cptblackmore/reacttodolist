@@ -9,6 +9,11 @@
   font-family:'Optimistic Text', sans-serif
 }
 
+::selection {
+  background-color: $accent-color;
+  color: $dark-color;
+}
+
 :focus {
   outline: 1px solid $light-color;
 }
