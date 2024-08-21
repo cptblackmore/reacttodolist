@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import Input from '../Input/Input';
 import Select from '../Select/Select';
+import SearchIcon from '../svg/SearchIcon';
 import classes from './TaskFilter.module.scss';
 
 function TaskFilter({filter, setFilter}) {
@@ -12,9 +13,9 @@ function TaskFilter({filter, setFilter}) {
 
   return <div className={classes.filter}>
     <Input value={filter.query} 
-           className={classes.search}
            placeholder='Поиск задачи...' 
            onChange={e => {setFilter({...filter, query: e.target.value})}}
+           icon={<SearchIcon/>}
     />
     <Select filter={filter} 
             setFilter={setFilter} 

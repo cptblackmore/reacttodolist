@@ -1,5 +1,11 @@
 @import '../../../../styles/colors';
 
+.inputWrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
 .input {
   background-color: transparent;
   border: 1px solid $light-color;
@@ -9,4 +15,11 @@
   box-sizing: border-box;
   padding: 0 10px;
   font-size: 1.2em;
+}
+
+.icon {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  bottom: 3px;
 }
