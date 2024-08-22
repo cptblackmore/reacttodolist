@@ -18,6 +18,7 @@ function Select({filter, setFilter, className, values}) {
   return <div ref={dropdownRef} 
               onClick={() => {setIsOpen(!isOpen)}} 
               className={combinedClassName}
+              tabIndex='0'
     > 
       <div className={classes.text}>
         {values.find(item => item.value === currentValue).text}

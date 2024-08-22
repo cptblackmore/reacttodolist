@@ -15,6 +15,10 @@
   box-sizing: border-box;
   padding: 0 10px;
   font-size: 1.2em;
+
+  &:focus {
+    outline: 2px solid $light-color;
+  }
 }
 
 .icon {

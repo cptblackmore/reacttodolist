@@ -7,6 +7,13 @@
   font-weight: 600;
   font-size: 1em;
   cursor: pointer;
+
+  &:focus {
+    outline-color: transparent;
+  }
+  &:focus-visible {
+    outline: 2px solid $light-color;
+  }
   
   &.filled {
     background-color: $accent-color;

@@ -14,6 +14,13 @@
   text-align: left;
   padding: 0 10px;
   cursor: pointer;
+
+  &:focus {
+    outline: 2px solid rgba($accent-color, 0.5);
+  }
+  &:focus-visible {
+    outline: 2px solid $light-color;
+  }
   
   &>option {
     background-color: $dark-color;

@@ -13,6 +13,14 @@
   flex-shrink: 0; 
   border: 1px solid #adb5bd;
   border-radius: 0.25em;
+
+    &:focus {
+      outline: 2px solid rgba($light-color, 0.5);
+    }
+    &:focus-visible {
+      outline: 2px solid $light-color;
+    }
+    
     &.checked {
       background-color: $accent-color;
       border-color: $accent-color;
@@ -20,7 +28,10 @@
       background-repeat: no-repeat;
       
       &:focus {
-        outline: 1px solid rgba($accent-color, 0.5);
+        outline: 2px solid rgba($accent-color, 0.5);
+      }
+      &:focus-visible {
+        outline: 2px solid $light-color;
       }
     }
 }

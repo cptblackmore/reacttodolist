@@ -67,7 +67,7 @@ function TaskList({storageKey}) {
     }
     <IconButton onClick={() => {setIsAddTaskForm(true)}}
                 className={classes.addButton}
-                hoverScale='1.2'
+                hoverScale='1.1'
     >
       <AddIcon color1={'rgb(97, 218, 251, 1)'} 
                color2={'rgb(30, 30, 30, 1)'}/>
