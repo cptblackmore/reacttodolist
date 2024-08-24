@@ -5,7 +5,10 @@ function Option({className, children, ...props}) {
   const combinedClassName = `${className || null}
                              ${classes.option}`
 
-  return <div className={combinedClassName} {...props}>
+  return <div className={combinedClassName}
+              tabIndex='0'
+              {...props}
+  >
     {children}
   </div>
 }

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
+import Select from '../../Select/Select';
 import Input from '../Input/Input';
-import Select from '../Select/Select';
 import SearchIcon from '../svg/SearchIcon';
 import classes from './TaskFilter.module.scss';
 
