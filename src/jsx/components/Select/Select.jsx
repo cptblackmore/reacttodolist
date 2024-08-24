@@ -21,8 +21,12 @@ function Select({filter, setFilter, className, values}) {
     }
   }, [currentValue, isOpen]);
   
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e, optionIndex) => {
     if (e.key === 'Enter') {
+      if (optionIndex !== undefined) {
+        setCurrentValue(values[optionIndex].value);
+        setCurrentIndex(optionIndex);
+      }
       setIsOpen(!isOpen);
     }
     if (e.key === 'ArrowUp') {
@@ -59,10 +63,13 @@ function Select({filter, setFilter, className, values}) {
             <Option
               key={item.value}
               onClick={() => { 
+                setCurrentIndex(index);
                 setCurrentValue(item.value); 
                 setIsOpen(false); 
               }}
+              onKeyDown={e => handleKeyDown(e, index)}
               onMouseEnter={() => setCurrentIndex(index)}
+              onFocus={() => setCurrentIndex(index)}
               className={`${classes.option} ${index === currentIndex ? classes.highlighted : null}`}
             >
               {item.text}
