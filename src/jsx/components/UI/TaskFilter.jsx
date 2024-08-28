@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
-import Select from '../../Select/Select';
-import Input from '../Input/Input';
-import SearchIcon from '../svg/SearchIcon';
-import classes from './TaskFilter.module.scss';
+import Select from '../Select';
+import Input from './Input';
+import SearchIcon from './svg/SearchIcon';
 
 function TaskFilter({filter, setFilter}) {
   const selectValues = [
@@ -11,17 +10,33 @@ function TaskFilter({filter, setFilter}) {
     {value: 'incomplete', text: 'Не выполнено'}
   ]
 
-  return <div className={classes.filter}>
+  return <div className='filter'>
     <Input value={filter.query} 
            placeholder='Поиск задачи...' 
            onChange={e => {setFilter({...filter, query: e.target.value})}}
            icon={<SearchIcon/>}
     />
-    <Select filter={filter} 
-            setFilter={setFilter} 
-            className={classes.category}
-            values={selectValues}
-    />
+    <div className='category'>
+      <Select filter={filter} 
+              setFilter={setFilter} 
+              values={selectValues}
+      />
+    </div>
+
+    <style jsx>{`
+      .filter {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 2em;
+        gap: 0.5em;
+      }
+
+      .category {
+        width: 100%;
+        max-width: 120px;
+      }
+    `}</style>
   </div>
 }
 

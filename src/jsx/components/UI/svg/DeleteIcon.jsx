@@ -27,7 +27,7 @@ function DeleteIcon() {
         ></path>
         <g className="strokes">
           <path
-          stroke="#CDCDCD"
+          stroke="#AAA"
           d="M3.874 7.615A1.5 1.5 0 015.37 6h7.26a1.5 1.5 0 011.496 1.615l-.52 6.75a1.499 1.499 0 01-1.495 1.385H5.889a1.5 1.5 0 01-1.496-1.385l-.519-6.75z"
           className="stroke-shape"
           ></path>
@@ -38,7 +38,7 @@ function DeleteIcon() {
           <path d="M14.625 3.75H3.375z" className="fills"></path>
           <g className="strokes">
           <path
-            stroke="#CDCDCD"
+            stroke="#AAA"
             d="M14.625 3.75H3.375z"
             className="stroke-shape"
           ></path>
@@ -48,7 +48,7 @@ function DeleteIcon() {
           <path d="M14.625 3.75H3.375" className="fills"></path>
           <g className="strokes">
           <path
-            stroke="#CDCDCD"
+            stroke="#AAA"
             d="M14.625 3.75H3.375"
             className="stroke-shape"
           ></path>
@@ -62,7 +62,7 @@ function DeleteIcon() {
         ></path>
         <g className="strokes">
           <path
-          stroke="#CDCDCD"
+          stroke="#AAA"
           d="M7.5 2.25a.75.75 0 01.75-.75h1.5a.75.75 0 01.75.75v1.5h-3v-1.5z"
           className="stroke-shape"
           ></path>
@@ -73,7 +73,7 @@ function DeleteIcon() {
           <path d="M10.5 9v3.75z" className="fills"></path>
           <g className="strokes">
           <path
-            stroke="#CDCDCD"
+            stroke="#AAA"
             d="M10.5 9v3.75z"
             className="stroke-shape"
           ></path>
@@ -83,7 +83,7 @@ function DeleteIcon() {
           <path d="M10.5 9v3.75" className="fills"></path>
           <g className="strokes">
           <path
-            stroke="#CDCDCD"
+            stroke="#AAA"
             d="M10.5 9v3.75"
             className="stroke-shape"
           ></path>
@@ -95,7 +95,7 @@ function DeleteIcon() {
           <path d="M7.5 9v3.75z" className="fills"></path>
           <g className="strokes">
           <path
-            stroke="#CDCDCD"
+            stroke="#AAA"
             d="M7.5 9v3.75z"
             className="stroke-shape"
           ></path>
@@ -105,7 +105,7 @@ function DeleteIcon() {
           <path d="M7.5 9v3.75" className="fills"></path>
           <g className="strokes">
           <path
-            stroke="#CDCDCD"
+            stroke="#AAA"
             d="M7.5 9v3.75"
             className="stroke-shape"
           ></path>
