@@ -27,23 +27,23 @@ function Input({icon, ...props}) {
 
       .input {
         background-color: transparent;
-        border: 1px solid ${theme.base.foreground};
+        border: 1px solid ${theme.fg};
         border-radius: 0.4em;
-        color: ${theme.base.foreground};
+        color: ${theme.fg};
         width: 100%;
         height: 100%;
         box-sizing: border-box;
         padding: 0 10px;
         font-size: 1.2em;
-        caret-color: ${theme.base.foreground};
+        caret-color: ${theme.fg};
 
         &::placeholder {
-          color: ${theme.base.neutral};
+          color: ${theme.neutral};
           transition: color 0.2s ease;
         }
 
         &:focus {
-          outline: 2px solid ${theme.base.foreground};
+          outline: 2px solid ${theme.fg};
 
           &::placeholder {
             color: transparent;

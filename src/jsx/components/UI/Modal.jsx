@@ -26,8 +26,8 @@ function Modal({width='500px', children, ...props}) {
     }
 
     .modalContent {
-      background-color: ${theme.base.background};
-      border: 1px solid ${theme.base.foreground};
+      background-color: ${theme.bg};
+      border: 1px solid ${theme.fg};
       padding: 10px;
       border-radius: 0.8em;
       width: 100%;

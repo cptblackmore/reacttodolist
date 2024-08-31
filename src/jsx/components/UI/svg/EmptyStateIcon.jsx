@@ -34,7 +34,7 @@ function EmptyStateIcon() {
     <style jsx>{`
       .liner {
         fill: none;
-        stroke: ${theme.accent.main};
+        stroke: ${theme.accent};
         stroke-width: 12;
         stroke-dasharray: 200 100;
         stroke-linecap: round;
@@ -42,7 +42,7 @@ function EmptyStateIcon() {
 
       .line {
         fill: none;
-        stroke: ${theme.accent.main};
+        stroke: ${theme.accent};
         stroke-width: 12;
         stroke-dasharray: 200 100;
       }

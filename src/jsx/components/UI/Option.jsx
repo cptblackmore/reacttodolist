@@ -21,14 +21,12 @@ function Option({children, ...props}) {
         background-color: transparent;
       }
       &:hover {
-        background-color: ${theme.accent.translucent};
-        color: ${theme.base.background};
-        border-radius: 0.4em;
+        background-color: ${theme.accentTranslucent};
+        color: ${theme.bg};
       }
       &:focus {    
-        background-color: ${theme.accent.translucent};
-        color: ${theme.base.background};
-        border-radius: 0.4em;
+        color: ${theme.bg};
+        outline: none;
       }
     }
   `}</style>

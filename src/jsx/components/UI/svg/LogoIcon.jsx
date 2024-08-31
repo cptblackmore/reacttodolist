@@ -15,8 +15,8 @@ function LogoIcon() {
 
     <style jsx>{`
       .logo {
-        fill: ${theme.accent.main};
-        stroke: ${theme.accent.main};
+        fill: ${theme.accent};
+        stroke: ${theme.accent};
       }
     `}</style>
     </svg>

@@ -7,8 +7,8 @@ import Option from './UI/Option';
 function Select({filter, setFilter, values}) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(null);
-  const dropdownRef = useRef(null);
-  useCloseByClickOutside(dropdownRef, setIsOpen);
+  const selectRef = useRef(null);
+  useCloseByClickOutside(selectRef, setIsOpen);
   const [currentValue, setCurrentValue] = useState(filter.category);
   const combinedClassName = `${'select'} ${isOpen ? 'isOpen' : ''}`
   const theme = useContext(ThemeContext);
@@ -47,8 +47,8 @@ function Select({filter, setFilter, values}) {
   
   return (
     <div
-      ref={dropdownRef}
-      onClick={() => { setIsOpen(!isOpen) }}
+      ref={selectRef}
+      onClick={() => {setIsOpen(!isOpen)}}
       className={combinedClassName}
       tabIndex='0'
       onKeyDown={handleKeyDown}
@@ -83,9 +83,9 @@ function Select({filter, setFilter, values}) {
           position: relative;
           display: flex;
           align-items: center;
-          background-color: ${theme.accent.main};
-          border: 1px solid ${theme.accent.main};
-          color: ${theme.base.background};
+          background-color: ${theme.accent};
+          border: 2px solid ${theme.accent};
+          color: ${theme.bg};
           border-radius: 0.4em;
           width: 100%;
           height: 100%;
@@ -95,19 +95,27 @@ function Select({filter, setFilter, values}) {
           cursor: pointer;
           
           &:focus {
-            outline: 2px solid ${theme.accent.translucent};
+            outline: 2px solid ${theme.accentTranslucent};
           }
           &:focus-visible {
-            outline: 2px solid ${theme.base.foreground};
+            outline: 2px solid ${theme.fg};
+            background-color: ${theme.accentMuted};
+            border: 2px solid ${theme.accentMuted};
+            transition: background-color 0.2s ease, border 0.2s ease;
+          }
+          &:hover {
+            background-color: ${theme.accentMuted};
+            border: 2px solid ${theme.accentMuted};
+            transition: background-color 0.2s ease, border 0.2s ease;
           }
           
           &::before, &::after {
             content: '';
             position: absolute;
-            z-index: 99;
+            z-index: 98;
             height: 2px;
             width: 10px;
-            background-color: ${theme.base.background};
+            background-color: ${theme.bg};
             border-radius: 1px;
             transition: transform 0.2s ease;
           }
@@ -131,13 +139,13 @@ function Select({filter, setFilter, values}) {
         }
         
         .dropdown {
-          background-color: ${theme.base.foreground};
+          background-color: ${theme.fg};
           border-radius: 0.4em;
-          border: 2px solid ${theme.accent.main};
+          border: 2px solid ${theme.accent};
           position: absolute;
           z-index: 99;
           left: 0;
-          top: 2em;
+          top: 115%;
           right: 0;
         }
 
@@ -147,10 +155,10 @@ function Select({filter, setFilter, values}) {
             content: '';
             position: absolute;
             top: 0;
-            left: 0.5em;
-            right: 0.5em;
+            left: 0;
+            right: 0;
             height: 1px;
-            background-color: ${theme.accent.translucent};
+            background-color: ${theme.accentTranslucent};
           }
         }
 
@@ -164,7 +172,7 @@ function Select({filter, setFilter, values}) {
         }
 
         .highlighted {
-          background-color: ${theme.accent.translucent};
+          background-color: ${theme.accentTranslucent};
 
           &:hover>:global(div) {
             background-color: transparent;

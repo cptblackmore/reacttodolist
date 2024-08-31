@@ -27,19 +27,31 @@ function IconButton({children, hoverColor, hoverScale=1, ...props}) {
         outline-color: transparent;
       }
       &:focus-visible {
-        outline: 2px solid ${theme.base.foreground};
+        outline: 2px solid ${theme.fg};
         border-radius: 5px;
       }
     }
 
-    .colorable:hover :global(path) {
-      stroke: ${hoverColor || theme.base.foreground};
-      transition: all 0.5s ease;
+    .colorable {
+      &:hover :global(path) {
+        stroke: ${hoverColor || theme.fg};
+        transition: all 0.5s ease;
+      }
+      &:focus :global(path) {
+        stroke: ${hoverColor || theme.fg};
+        transition: all 0.5s ease;
+      }
     }
 
-    .scalable:hover {
-      transform: scale(${hoverScale});
-      transition: transform 0.3s ease;
+    .scalable {
+      &:hover {
+        transform: scale(${hoverScale});
+        transition: transform 0.3s ease;
+      }
+      &:focus {
+        transform: scale(${hoverScale});
+        transition: transform 0.3s ease;
+      }
     }
   `}</style>
   </button>

@@ -32,27 +32,27 @@ function Checkbox({checked, toggle, iconColor}) {
       width: 1em;
       height: 1em;
       flex-shrink: 0; 
-      border: 1px solid ${theme.base.neutral};
+      border: 1px solid ${theme.neutral};
       border-radius: 0.25em;
 
         &:focus {
-          outline: 2px solid ${theme.accent.translucent};
+          outline: 2px solid ${theme.accentTranslucent};
         }
         &:focus-visible {
-          outline: 2px solid ${theme.base.foreground};
+          outline: 2px solid ${theme.fg};
         }
         
         &.checked {
-          background-color: ${theme.accent.main};
-          border-color: ${theme.accent.main};
+          background-color: ${theme.accent};
+          border-color: ${theme.accent};
           background-size: contain;
           background-repeat: no-repeat;
           
           &:focus {
-            outline: 2px solid ${theme.accent.translucent};
+            outline: 2px solid ${theme.accentTranslucent};
           }
           &:focus-visible {
-            outline: 2px solid ${theme.base.foreground};
+            outline: 2px solid ${theme.fg};
           }
         }
     }

@@ -13,13 +13,13 @@ function Task({task, toggleCheckbox, removeTask, showEditTaskForm}) {
     <div className='content'>
       <Checkbox checked={task.completed} 
                 toggle={() => {toggleCheckbox(task.id)}}
-                iconColor={theme.base.background}
+                iconColor={theme.bg}
       />
       <span className='text'>{task.body}</span>
     </div>
     <div className='buttons'>
       <div className='button'>
-        <IconButton hoverColor={theme.accent.main}
+        <IconButton hoverColor={theme.accent}
                     onClick={() => {showEditTaskForm({...task})}}
         >
           <EditIcon/>

@@ -11,37 +11,47 @@ function Button({children, variant='filled', ...props}) {
 
   <style jsx>{`
     .button {
-      border: 2px solid ${theme.accent.main};
+      border: 2px solid ${theme.accent};
       border-radius: 0.4em;
       padding: 10px 22px;
       font-weight: 600;
       font-size: 1em;
       cursor: pointer;
 
+      &.filled {
+        background-color: ${theme.accent};
+        color: ${theme.bg};
+      }
+      &.outlined {
+        background-color: transparent;
+        color: ${theme.fg};
+      }
       &:focus {
         outline-color: transparent;
       }
       &:focus-visible {
-        outline: 2px solid ${theme.base.foreground};
-      }
-      
-      &.filled {
-        background-color: ${theme.accent.main};
-        color: ${theme.base.background};
-      }
-      &.outlined {
-        background-color: transparent;
-        color: ${theme.base.foreground};
-      }
-      &:hover {
+        outline-color: transparent;
+
         &.filled {
-          background-color: ${theme.accent.muted};
-          border: 1px solid ${theme.accent.muted};
+          background-color: ${theme.accentMuted};
+          border: 2px solid ${theme.accentMuted};
           transition: all 0.2s ease;
         }
         &.outlined {
-          background-color: ${theme.accent.main};
-          color: ${theme.base.background};
+          background-color: ${theme.accent};
+          color: ${theme.bg};
+          transition: background-color 0.2s ease;
+        }
+      }
+      &:hover {
+        &.filled {
+          background-color: ${theme.accentMuted};
+          border: 2px solid ${theme.accentMuted};
+          transition: all 0.2s ease;
+        }
+        &.outlined {
+          background-color: ${theme.accent};
+          color: ${theme.bg};
           transition: background-color 0.2s ease;
         }
       }

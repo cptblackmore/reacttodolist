@@ -72,8 +72,8 @@ function TaskList({storageKey}) {
       <IconButton onClick={() => {setIsAddTaskForm(true)}}
                   hoverScale='1.1'
       >
-        <AddIcon color1={theme.accent.main} 
-                 color2={theme.base.background}/>
+        <AddIcon color1={theme.accent} 
+                 color2={theme.bg}/>
       </IconButton>
     </div>
 
