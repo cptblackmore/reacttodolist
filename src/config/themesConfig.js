@@ -1,27 +1,56 @@
-export const themes = {
-  light: {
-    foreground: 'rgb(30, 30, 30)',
-    background: 'rgb(235, 235, 235)',
-    neutral: 'rgb(170, 170, 170)'
+export const themes = [
+  {
+    value: 'lb',
+    fg: 'rgb(30, 30, 30)',
+    bg: 'rgb(235, 235, 235)',
+    neutral: 'rgb(170, 170, 170)',
+    accent: 'rgb(87, 208, 241)',
+    accentTranslucent: 'rgba(87, 208, 241, 0.5)',
+    accentMuted: 'rgb(53, 162, 192)'
   },
-  dark: {
-    foreground: 'rgb(235, 235, 235)',
-    background: 'rgb(30, 30, 30)',
-    neutral: 'rgb(170, 170, 170)'
+  {
+    value: 'db',
+    fg: 'rgb(235, 235, 235)',
+    bg: 'rgb(30, 30, 30)',
+    neutral: 'rgb(170, 170, 170)',
+    accent: 'rgb(87, 208, 241)',
+    accentTranslucent: 'rgba(87, 208, 241, 0.5)',
+    accentMuted: 'rgb(53, 162, 192)'
   },
-  accentBlue: {
-    main: 'rgb(87, 208, 241)',
-    translucent: 'rgba(87, 208, 241, 0.5)',
-    muted: 'rgb(53, 162, 192)'
+  {
+    value: 'lg',
+    fg: 'rgb(30, 30, 30)',
+    bg: 'rgb(235, 235, 235)',
+    neutral: 'rgb(170, 170, 170)',
+    accent: 'rgb(72, 231, 188)',
+    accentTranslucent: 'rgba(72, 241, 188, 0.5)',
+    accentMuted: 'rgb(53, 192, 162)'
   },
-  accentGreen: {
-    main: 'rgb(87, 241, 208)',
-    translucent: 'rgba(87, 241, 208, 0.5)',
-    muted: 'rgb(53, 192, 162)'
+  {
+    value: 'dg',
+    fg: 'rgb(235, 235, 235)',
+    bg: 'rgb(30, 30, 30)',
+    neutral: 'rgb(170, 170, 170)',
+    accent: 'rgb(72, 231, 188)',
+    accentTranslucent: 'rgba(72, 241, 188, 0.5)',
+    accentMuted: 'rgb(53, 192, 162)'
   },
-  accentRed: {
-    main: 'rgb(251, 77, 98)',
-    translucent: 'rgba(251, 77, 98, 0.5)',
-    muted: 'rgb(202, 43, 52)'
+  {
+    value: 'lr',
+    fg: 'rgb(30, 30, 30)',
+    bg: 'rgb(235, 235, 235)',
+    neutral: 'rgb(170, 170, 170)',
+    accent: 'rgb(251, 77, 98)',
+    accentTranslucent: 'rgba(251, 77, 98, 0.5)',
+    accentMuted: 'rgb(202, 43, 52)'
+  },
+  {
+    value: 'dr',
+    fg: 'rgb(235, 235, 235)',
+    bg: 'rgb(30, 30, 30)',
+    neutral: 'rgb(170, 170, 170)',
+    accent: 'rgb(251, 77, 98)',
+    accentTranslucent: 'rgba(251, 77, 98, 0.5)',
+    accentMuted: 'rgb(202, 43, 52)'
   }
-}
+]

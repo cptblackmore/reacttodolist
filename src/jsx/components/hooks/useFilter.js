@@ -1,25 +1,25 @@
 import { useMemo } from 'react';
 
-function useFilter(filter, tasks) {
+function useFilter(filterQuery, filterCategory, tasks) {
   const searchedTasks = useMemo(() => {
-    if (filter.query) {
-      return [...tasks].filter((task) => task.body.toLowerCase().includes(filter.query.toLowerCase()));
+    if (filterQuery) {
+      return [...tasks].filter((task) => task.body.toLowerCase().includes(filterQuery.toLowerCase()));
     } else {
       return [...tasks];
     }
-  }, [filter, tasks])
+  }, [filterQuery, tasks])
   
   const categorizedTasks = useMemo(() => {
-    if (filter.category === 'all') {
+    if (filterCategory.value === 'all') {
       return [...searchedTasks];
     }
-    if (filter.category === 'complete') {
+    if (filterCategory.value === 'complete') {
       return [...searchedTasks].filter((task) => task.completed);
     }
-    if (filter.category === 'incomplete') {
+    if (filterCategory.value === 'incomplete') {
       return [...searchedTasks].filter((task) => !task.completed);
     }
-  }, [filter, searchedTasks])
+  }, [filterCategory, searchedTasks])
 
   return categorizedTasks;
 }

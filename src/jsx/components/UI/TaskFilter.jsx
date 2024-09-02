@@ -1,25 +1,19 @@
 import PropTypes from 'prop-types';
-import Select from '../Select';
+import CategorySelect from './CategorySelect';
 import Input from './Input';
 import SearchIcon from './svg/SearchIcon';
 
-function TaskFilter({filter, setFilter}) {
-  const selectValues = [
-    {value: 'all', text: 'Все'},
-    {value: 'complete', text: 'Выполнено'},
-    {value: 'incomplete', text: 'Не выполнено'}
-  ]
-
+function TaskFilter({filterQuery, setFilterQuery, filterCategory, setFilterCategory, categories}) {
   return <div className='filter'>
-    <Input value={filter.query} 
+    <Input value={filterQuery} 
            placeholder='Поиск задачи...' 
-           onChange={e => {setFilter({...filter, query: e.target.value})}}
+           onChange={e => {setFilterQuery(e.target.value)}}
            icon={<SearchIcon/>}
     />
     <div className='category'>
-      <Select filter={filter} 
-              setFilter={setFilter} 
-              values={selectValues}
+      <CategorySelect currentValue={filterCategory} 
+                      setCurrentValue={setFilterCategory} 
+                      values={categories}
       />
     </div>
 
@@ -41,8 +35,11 @@ function TaskFilter({filter, setFilter}) {
 }
 
 TaskFilter.propTypes = {
-  filter: PropTypes.object.isRequired,
-  setFilter: PropTypes.func.isRequired
+  filterQuery: PropTypes.string.isRequired,
+  setFilterQuery: PropTypes.func.isRequired,
+  filterCategory: PropTypes.object.isRequired,
+  setFilterCategory: PropTypes.func.isRequired,
+  categories: PropTypes.array.isRequired
 }
 
 export default TaskFilter;

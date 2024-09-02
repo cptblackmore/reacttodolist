@@ -19,8 +19,14 @@ function TaskList({storageKey}) {
   const [isAddTaskForm, setIsAddTaskForm] = useState(false);
   const [isEditTaskForm, setIsEditTaskForm] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(null);
-  const [filter, setFilter] = useState({query: '', category: 'all'});
-  const filteredTasks = useFilter(filter, tasks);
+  const categories = [
+    {value: 'all', text: 'Все'},
+    {value: 'complete', text: 'Выполнено'},
+    {value: 'incomplete', text: 'Не выполнено'}
+  ]
+  const [filterQuery, setFilterQuery] = useState('');
+  const [filterCategory, setFilterCategory] = useState(categories[0]);
+  const filteredTasks = useFilter(filterQuery, filterCategory, tasks);
   const theme = useContext(ThemeContext);
 
   function toggleCheckbox(id) {
@@ -50,7 +56,12 @@ function TaskList({storageKey}) {
     {isAddTaskForm ? <TaskForm title='Добавление задачи' setIsOpen={setIsAddTaskForm} submit={addTask}/> : null}
     {isEditTaskForm ? <TaskForm title='Редактирование задачи' body={taskToEdit.body} setIsOpen={setIsEditTaskForm} submit={editTask}/> : null}
     <div className='filter'>
-      <TaskFilter filter={filter} setFilter={setFilter} />
+      <TaskFilter filterQuery={filterQuery} 
+                  setFilterQuery={setFilterQuery} 
+                  filterCategory={filterCategory} 
+                  setFilterCategory={setFilterCategory} 
+                  categories={categories} 
+      />
     </div>
     {filteredTasks.length !== 0
       ?
