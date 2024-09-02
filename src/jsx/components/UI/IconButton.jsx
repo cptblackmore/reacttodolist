@@ -18,6 +18,7 @@ function IconButton({children, hoverColor, hoverScale=1, ...props}) {
       justify-content: center;
       width: 100%;
       height: 100%;
+      padding: 0.4em 0.4em;
       background-color: transparent;
       border: none;
       cursor: pointer;

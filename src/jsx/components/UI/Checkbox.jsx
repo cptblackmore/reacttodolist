@@ -21,12 +21,6 @@ function Checkbox({checked, toggle, iconColor}) {
     }
 
   <style jsx>{`
-    .checkbox {
-      position: absolute;
-      z-index: -1;
-      opacity: 0;
-    }
-
     .customCheckbox {
       position: relative;
       width: 1em;

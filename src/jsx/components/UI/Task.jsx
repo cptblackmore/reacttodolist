@@ -11,10 +11,12 @@ function Task({task, toggleCheckbox, removeTask, showEditTaskForm}) {
 
   return <div className='task'>
     <div className='content'>
-      <Checkbox checked={task.completed} 
-                toggle={() => {toggleCheckbox(task.id)}}
-                iconColor={theme.bg}
-      />
+      <div className='checkbox'>
+        <Checkbox checked={task.completed} 
+                  toggle={() => {toggleCheckbox(task.id)}}
+                  iconColor={theme.bg}
+        />
+      </div>
       <span className='text'>{task.body}</span>
     </div>
     <div className='buttons'>
@@ -49,19 +51,22 @@ function Task({task, toggleCheckbox, removeTask, showEditTaskForm}) {
       align-items: center;
     }
 
+    .checkbox {
+      padding: 0 0.5em;
+    }
     .text {
       text-align: left;
       font-size: 1.2em;
-      padding: 0 0.5em;
     }
 
     .buttons {
       display: flex;
+      padding-left: 0.5em;
     }
 
     .button {
-      width: 2.7em;
-      height: 2.7em;
+      width: 2.5em;
+      height: 2.5em;
     }`}</style>
   </div>
 }
