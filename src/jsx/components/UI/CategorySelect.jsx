@@ -59,6 +59,9 @@ function CategorySelect({currentValue, setCurrentValue, values}) {
                         padding: 0 10px;
                         cursor: pointer;
                         
+                        &:active {
+                            filter: brightness(0.9) contrast(1.1);
+                        }
                         &:focus {
                           outline: 2px solid ${theme.accentTranslucent};
                         }

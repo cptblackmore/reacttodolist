@@ -1,7 +1,6 @@
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
-import { useContext, useEffect, useState } from 'react';
-import { ThemeContext } from '../../context/ThemeContext';
+import { useEffect, useState } from 'react';
 import useFilter from './hooks/useFilter';
 import IconButton from './UI/IconButton';
 import AddIcon from './UI/svg/AddIcon';
@@ -27,7 +26,6 @@ function TaskList({storageKey}) {
   const [filterQuery, setFilterQuery] = useState('');
   const [filterCategory, setFilterCategory] = useState(categories[0]);
   const filteredTasks = useFilter(filterQuery, filterCategory, tasks);
-  const theme = useContext(ThemeContext);
 
   function toggleCheckbox(id) {
     setTasks(tasks.map(task => task.id === id ? {...task, completed: !task.completed} : task));
@@ -83,8 +81,7 @@ function TaskList({storageKey}) {
       <IconButton onClick={() => {setIsAddTaskForm(true)}}
                   hoverScale='1.1'
       >
-        <AddIcon color1={theme.accent} 
-                 color2={theme.bg}/>
+        <AddIcon/>
       </IconButton>
     </div>
 

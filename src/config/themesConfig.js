@@ -42,7 +42,7 @@ export const themes = [
     neutral: 'rgb(170, 170, 170)',
     accent: 'rgb(251, 77, 98)',
     accentTranslucent: 'rgba(251, 77, 98, 0.5)',
-    accentMuted: 'rgb(202, 43, 52)'
+    accentMuted: 'rgb(212, 53, 62)'
   },
   {
     value: 'dr',
@@ -51,6 +51,6 @@ export const themes = [
     neutral: 'rgb(170, 170, 170)',
     accent: 'rgb(251, 77, 98)',
     accentTranslucent: 'rgba(251, 77, 98, 0.5)',
-    accentMuted: 'rgb(202, 43, 52)'
+    accentMuted: 'rgb(202, 53, 62)'
   }
 ]

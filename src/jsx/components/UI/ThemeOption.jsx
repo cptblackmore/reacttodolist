@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useContext } from "react";
 import { ThemeContext } from "../../../context/ThemeContext";
 
@@ -32,6 +33,10 @@ function ThemeOption({theme, ...props}) {
     }
   `}</style>  
   </div>
+}
+
+ThemeOption.propTypes = {
+  theme: PropTypes.object.isRequired
 }
 
 export default ThemeOption;

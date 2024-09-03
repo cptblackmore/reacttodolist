@@ -17,6 +17,7 @@ function Button({children, variant='filled', ...props}) {
       font-weight: 600;
       font-size: 1em;
       cursor: pointer;
+      transition: all 0.2s ease;
 
       &.filled {
         background-color: ${theme.accent};
@@ -47,16 +48,14 @@ function Button({children, variant='filled', ...props}) {
         &.filled {
           background-color: ${theme.accentMuted};
           border: 2px solid ${theme.accentMuted};
-          transition: all 0.2s ease;
         }
         &.outlined {
           background-color: ${theme.accent};
           color: ${theme.bg};
-          transition: background-color 0.2s ease;
         }
       }
       &:active {
-        transform: scale(98%) translateY(1px);
+        filter: brightness(0.7) contrast(1.1);
       }
     }
   `}</style>

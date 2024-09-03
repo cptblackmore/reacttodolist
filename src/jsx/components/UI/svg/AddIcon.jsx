@@ -1,6 +1,9 @@
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { ThemeContext } from '../../../../context/ThemeContext';
 
-function AddIcon({color1, color2}) {
+function AddIcon() {
+  const theme = useContext(ThemeContext);
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -42,13 +45,13 @@ function AddIcon({color1, color2}) {
             cx="25"
             cy="25"
             r="25"
-            fill={color1}
+            fill={theme.accent}
             className="fills"
             filter="url(#a)"
           ></circle>
         </g>
         <path
-          fill={color2}
+          fill={theme.bg}
           fillRule="evenodd"
           d="M23.5 35.5A1.503 1.503 0 0025 37a1.503 1.503 0 001.5-1.5v-9h9A1.503 1.503 0 0037 25a1.503 1.503 0 00-1.5-1.5h-9v-9A1.503 1.503 0 0025 13a1.503 1.503 0 00-1.5 1.5v9h-9A1.503 1.503 0 0013 25a1.503 1.503 0 001.5 1.5h9v9z"
           className="fills"
@@ -57,11 +60,6 @@ function AddIcon({color1, color2}) {
       </g>
     </svg>
   );
-}
-
-AddIcon.propTypes = {
-  color1: PropTypes.string.isRequired,
-  color2: PropTypes.string.isRequired
 }
 
 export default AddIcon;

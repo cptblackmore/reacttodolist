@@ -35,6 +35,10 @@ function Checkbox({checked, toggle, iconColor}) {
         &:focus-visible {
           outline: 2px solid ${theme.fg};
         }
+
+        &:active {
+          filter: brightness(0.7) contrast(1.1);
+        }
         
         &.checked {
           background-color: ${theme.accent};
@@ -48,6 +52,7 @@ function Checkbox({checked, toggle, iconColor}) {
           &:focus-visible {
             outline: 2px solid ${theme.fg};
           }
+
         }
     }
 

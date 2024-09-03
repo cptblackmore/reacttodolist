@@ -70,6 +70,9 @@ function ThemeSelect({currentValue, setCurrentValue, values}) {
                             background-color: ${theme.accentTranslucent};
                             transition: background-color 0.2s ease;
                           }
+                          &:active {
+                            filter: brightness(0.9) contrast(1.1);
+                          }
                           
                           &.isOpen {
                             &::before {
