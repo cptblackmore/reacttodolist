@@ -13,11 +13,11 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm}) {
 
   return <Draggable draggableId={task.id} key={task.id} index={index}>
     {(provided, snapshot) => (
-      <div className={`task ${isDraggableFocused ? 'is-draggable-focused' : ''} ${snapshot.isDragging ? 'is-dragging' : ''}`} 
+      <div className='task'
            ref={provided.innerRef} 
            {...provided.draggableProps} 
       >
-        <div className='content'>
+        <div className={`content ${isDraggableFocused ? 'is-draggable-focused' : ''} ${snapshot.isDragging ? 'is-dragging' : ''}`}>
           <div className='checkbox'>
             <Checkbox checked={task.completed} 
                       toggle={() => {toggleCheckbox(task.id)}}
@@ -58,6 +58,13 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm}) {
             justify-content: space-between;
             width: 100%;
             padding: 0.5em 0;
+          }
+
+          .content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            min-height: 2em;
             border-radius: 5px;
 
             &.is-draggable-focused {
@@ -66,13 +73,6 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm}) {
             &.is-dragging {
               outline: 2px dashed ${theme.accent};
             }
-          }
-
-          .content {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            min-height: 2em;
           }
 
           .checkbox {
