@@ -13,46 +13,46 @@ function App() {
   }, [currentTheme]);
 
   return (
-    <ThemeContext.Provider value={currentTheme}>
-      <div className='App'>
-          <Logo/>
-          <TaskList storageKey='tasks1'/>
-          <div className='themes'>
-            <ThemeSelect currentValue={currentTheme} setCurrentValue={setCurrentTheme} values={themes} />
-          </div>
-      </div>
+      <ThemeContext.Provider value={currentTheme}>
+        <div className='App'>
+            <Logo/>
+            <TaskList storageKey='tasks1'/>
+            <div className='themes'>
+              <ThemeSelect currentValue={currentTheme} setCurrentValue={setCurrentTheme} values={themes} />
+            </div>
+        </div>
 
-      <style jsx global>{`
-        ::selection {
-          background-color: ${currentTheme.accent};
-          color: ${currentTheme.bg};
-        }
-        
-        :focus {
-          outline: 1px solid ${currentTheme.fg};
-        }
-        
-        .App {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          position: relative;
-        }
+        <style jsx global>{`
+          ::selection {
+            background-color: ${currentTheme.accent};
+            color: ${currentTheme.bg};
+          }
+          
+          :focus {
+            outline: 1px solid ${currentTheme.fg};
+          }
+          
+          .App {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+          }
 
-        .themes {
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: 2em;
-          height: 2em;
-        }
-        
-        body {
-          background-color: ${currentTheme.bg};
-          color: ${currentTheme.fg};
-        }
-        `}</style>
-    </ThemeContext.Provider>
+          .themes {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 2em;
+            height: 2em;
+          }
+          
+          body {
+            background-color: ${currentTheme.bg};
+            color: ${currentTheme.fg};
+          }
+          `}</style>
+      </ThemeContext.Provider>
   )
 }
 
