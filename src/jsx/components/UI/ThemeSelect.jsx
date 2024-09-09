@@ -11,32 +11,33 @@ function ThemeSelect({currentValue, setCurrentValue, values}) {
                    theme,
                    combinedClassName,
                    isOpen,
-                   setIsOpen,
+                   handleClick,
                    handleKeyDown,
                    selectRef,
                    highlightedIndex,
                    setCurrentIndex,
-                   setHighlightedIndex
+                   setHighlightedIndex,
+                   isEntered
                  }) => {
                   return <div className={combinedClassName}
                               tabIndex='1'
-                              onClick={() => {setIsOpen(!isOpen)}}
+                              onClick={handleClick}
                               onKeyDown={handleKeyDown}
                               ref={selectRef}
                   >
                   <div className='icon'><ThemeIcon/></div>
                     {isOpen &&
-                      <div className='dropdown'
+                      <div className={`dropdown ${isEntered ? 'entered' : ''}`}
                       >
                         {values.map((t, index) => {
                           return <div className={`option ${index === highlightedIndex ? 'highlighted' : ''}`}
                                       key={index}
                           >
                             <ThemeOption theme={t} 
-                                        onClick={() => {setCurrentIndex(index)}}
-                                        onKeyDown={e => {handleKeyDown(e, index)}}
-                                        onFocus={() => setCurrentIndex(index)}
-                                        onMouseEnter={() => setHighlightedIndex(index)}
+                                         onClick={() => {setCurrentIndex(index)}}
+                                         onKeyDown={e => {handleKeyDown(e, index)}}
+                                         onFocus={() => setHighlightedIndex(index)}
+                                         onMouseEnter={() => setHighlightedIndex(index)}
                             />
                           </div>
                         })}
@@ -96,7 +97,7 @@ function ThemeSelect({currentValue, setCurrentValue, values}) {
                           position: absolute;
                           display: flex;
                           top: 0;
-                          right: 120%;
+                          right: 100%;
                           bottom: 0;
                           width: auto;
                           background-color: ${theme.fg};
@@ -104,6 +105,13 @@ function ThemeSelect({currentValue, setCurrentValue, values}) {
                           border-radius: 0.4em;
                           z-index: 99;
                           overflow: hidden;
+                          opacity: 0;
+                          transition: all 0.2s ease;
+
+                          &.entered {
+                            opacity: 1;
+                            right: 120%;
+                          }
                         }
 
                         .option {

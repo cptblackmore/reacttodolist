@@ -3,12 +3,12 @@ import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import useFilter from './hooks/useFilter';
+import Task from './Task';
+import TaskForm from './TaskForm';
 import IconButton from './UI/IconButton';
 import AddIcon from './UI/svg/AddIcon';
 import EmptyState from './UI/svg/EmptyStateIcon';
-import Task from './UI/Task';
 import TaskFilter from './UI/TaskFilter';
-import TaskForm from './UI/TaskForm';
 
 function TaskList({storageKey}) {
   const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem(storageKey)) || []);
@@ -27,6 +27,14 @@ function TaskList({storageKey}) {
   const [filterQuery, setFilterQuery] = useState('');
   const [filterCategory, setFilterCategory] = useState(categories[0]);
   const filteredTasks = useFilter(filterQuery, filterCategory, tasks);
+  const [isEmptyStateEntered, setIsEmptyStateEntered] = useState(false);
+  useEffect(() => {
+    if (filteredTasks.length === 0) {
+      setIsEmptyStateEntered(true);
+    } else {
+      setIsEmptyStateEntered(false);
+    }
+  }, [filteredTasks]);
 
   function toggleCheckbox(id) {
     setTasks(tasks.map(task => task.id === id ? {...task, completed: !task.completed} : task));
@@ -34,20 +42,26 @@ function TaskList({storageKey}) {
   function removeTask(id) {
     setTasks(tasks.filter(task => task.id !== id));
   }
-  function addTask(body) {
+  function addTask(body, setIsEntered) {
     if (body) {
-      setTasks([...tasks, {id: nanoid(), completed: false, body}]);
-      setIsAddTaskForm(false);
+      setIsEntered(false);
+      setTimeout(() => {
+        setTasks([...tasks, {id: nanoid(), completed: false, body}]);
+        setIsAddTaskForm(false);
+      }, 300)
     }
   }
   function showEditTaskForm(task) {
     setTaskToEdit(task);
     setIsEditTaskForm(true);
   }
-  function editTask(body) {
+  function editTask(body, setIsEntered) {
     if (body) {
-      setTasks(tasks.map(task => task.id !== taskToEdit.id ? task : {...task, body}))
-      setIsEditTaskForm(false);
+      setIsEntered(false);
+      setTimeout(() => {
+        setTasks(tasks.map(task => task.id !== taskToEdit.id ? task : {...task, body}))
+        setIsEditTaskForm(false);
+      }, 300)
     } 
   }
   function handleDragEnd(result) {
@@ -86,7 +100,7 @@ function TaskList({storageKey}) {
               />
             })
             :
-            <div className='emptyState'>
+            <div className={`emptyState ${isEmptyStateEntered ? 'entered' : ''}`}>
               <EmptyState/>
               Задачи не найдены...
             </div>
@@ -122,6 +136,12 @@ function TaskList({storageKey}) {
             .emptyState {
               margin-top: 20px;
               max-width: 170px;
+              opacity: 0;
+              transition: opacity 1s ease;
+
+              &.entered {
+                opacity: 1;
+              }
             }
           `}</style>
         </div>

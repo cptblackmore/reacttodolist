@@ -1,10 +1,15 @@
 import { useEffect } from "react";
 
-function useCloseByClickEscape(setIsOpen) {
+function useCloseByClickEscape(setIsOpen, setIsEntered) {
   useEffect(() => {
     function handleEscape(event) {
       if (event.key === 'Escape') {
-        setIsOpen(false)
+        if (setIsEntered) {
+          setIsEntered(false);
+          setTimeout(() => {setIsOpen(false)}, 300);
+        } else {
+          setIsOpen(false);
+        }
       }
     }
 

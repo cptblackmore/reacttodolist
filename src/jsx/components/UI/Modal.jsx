@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { ThemeContext } from '../../../context/ThemeContext';
 
-function Modal({width='500px', children, ...props}) {
+function Modal({width='500px', isEntered, renderContent}) {
   const theme = useContext(ThemeContext);
 
-  return <div className='modal' {...props}>
-    <div className='modalContent' style={{maxWidth: width}}>
-      {children}
+  return <div className={`modal ${isEntered ? 'entered' : ''}`}>
+    <div className={`modalContent ${isEntered ? 'entered' : ''}`} style={{maxWidth: width}}>
+      {renderContent()}
     </div>
 
   <style jsx>{`
@@ -23,6 +23,12 @@ function Modal({width='500px', children, ...props}) {
       z-index: 100;
       padding: 0 20px;
       background-color: rgb(0, 0, 0, 0.7);
+      opacity: 0;
+      transition: all 0.3s ease;
+
+      &.entered {
+        opacity: 1;
+      }
     }
 
     .modalContent {
@@ -31,14 +37,21 @@ function Modal({width='500px', children, ...props}) {
       padding: 10px;
       border-radius: 0.8em;
       width: 100%;
+      transform: scale(0.8);
+      transition: all 0.1s ease;
+
+      &.entered {
+        transform: scale(1);
+      }
     }
   `}</style>
   </div>
 }
 
 Modal.propTypes = {
-  children: PropTypes.node.isRequired,
-  width: PropTypes.string
+  width: PropTypes.string,
+  isEntered: PropTypes.bool.isRequired,
+  renderContent: PropTypes.func.isRequired
 }
 
 export default Modal;

@@ -10,16 +10,17 @@ function CategorySelect({currentValue, setCurrentValue, values}) {
                    theme,
                    combinedClassName,
                    isOpen,
-                   setIsOpen,
+                   handleClick,
                    handleKeyDown,
                    selectRef,
                    highlightedIndex,
                    setCurrentIndex,
-                   setHighlightedIndex
+                   setHighlightedIndex,
+                   isEntered
                  }) => {
                   return <div className={combinedClassName}
                               tabIndex='0'
-                              onClick={() => {setIsOpen(!isOpen)}}
+                              onClick={handleClick}
                               onKeyDown={handleKeyDown}
                               ref={selectRef}
                   >
@@ -27,14 +28,14 @@ function CategorySelect({currentValue, setCurrentValue, values}) {
                       {values.find(item => item.value === currentValue.value).text}
                     </div>
                     {isOpen &&
-                      <div className='dropdown'>
+                      <div className={`dropdown ${isEntered ? 'entered' : ''}`}>
                         {values.map((item, index) => (
                           <div className={`option ${index === highlightedIndex ? 'highlighted' : ''}`}
                               key={item.value}
                           >
                             <Option onClick={() => {setCurrentIndex(index)}}
                                     onKeyDown={e => handleKeyDown(e, index)}
-                                    onFocus={() => setCurrentIndex(index)}
+                                    onFocus={() => setHighlightedIndex(index)}
                                     onMouseEnter={() => setHighlightedIndex(index)}
                             >
                               {item.text}
@@ -113,8 +114,15 @@ function CategorySelect({currentValue, setCurrentValue, values}) {
                         position: absolute;
                         z-index: 99;
                         left: 0;
-                        top: 115%;
+                        top: 90%;
                         right: 0;
+                        opacity: 0;
+                        transition: all 0.2s ease;
+
+                        &.entered {
+                          top: 115%;
+                          opacity: 1;
+                        }
                       }
 
                       .option {

@@ -1,10 +1,15 @@
 import { useEffect } from "react";
 
-function useCloseByClickOutside(ref, setIsOpen) {
+function useCloseByClickOutside(ref, setIsOpen, setIsEntered) {
   useEffect(() => {
     function handleClick(event) {
       if (ref.current && !ref.current.contains(event.target)) {
-        setIsOpen(false);
+        if (setIsEntered) {
+          setIsEntered(false);
+          setTimeout(() => {setIsOpen(false)}, 300);
+        } else {
+          setIsOpen(false);
+        }
       }
     }
     

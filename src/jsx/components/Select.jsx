@@ -11,50 +11,69 @@ function Select({currentValue, setCurrentValue, values, renderSelectUI}) {
   const [highlightedIndex, setHighlightedIndex] = useState(currentIndex);
   const selectRef = useRef(null);
   const combinedClassName = `${'select'} ${isOpen ? 'isOpen' : ''}`;
+  const [isEntered, setIsEntered] = useState(false);
   
   useEffect(() => {
     setCurrentValue(values[currentIndex]);
     setHighlightedIndex(currentIndex);
   }, [currentIndex, isOpen]);
   
-  const handleKeyDown = (e, optionIndex) => {
-    if (e.key === 'Enter') {
+  const handleClick = () => {
+    console.log('test')
+    if (isOpen) {
+      setIsEntered(false)
+      setTimeout(() => setIsOpen(false), 200)
+    } else {
+      setIsOpen(true);
+      setTimeout(() => setIsEntered(true))
+    }
+  }
+  const handleKeyDown = (event, optionIndex) => {
+    if (event.key === 'Enter') {
       if (optionIndex !== undefined) {
         setCurrentIndex(optionIndex);
       }
-      setIsOpen(!isOpen);
+      if (isOpen) {
+        setIsEntered(false)
+        setTimeout(() => setIsOpen(false), 200)
+      } else {
+        setIsOpen(true);
+        setTimeout(() => setIsEntered(true))
+      }
     }
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-      e.preventDefault();
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      event.preventDefault();
       const newIndex = currentIndex > 0 ? currentIndex - 1 : currentIndex;
       setCurrentIndex(newIndex);
     }
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-      e.preventDefault();
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+      event.preventDefault();
       const newIndex = currentIndex < values.length - 1 ? currentIndex + 1 : currentIndex;
       setCurrentIndex(newIndex);
     }
   };
-  useCloseByClickOutside(selectRef, setIsOpen);
-  useCloseByClickEscape(setIsOpen);
+  useCloseByClickOutside(selectRef, setIsOpen, setIsEntered);
+  useCloseByClickEscape(setIsOpen, setIsEntered);
   
   return renderSelectUI({
     theme,
     combinedClassName,
     isOpen,
-    setIsOpen,
+    handleClick,
     handleKeyDown,
     selectRef,
     highlightedIndex,
     setCurrentIndex,
-    setHighlightedIndex
+    setHighlightedIndex,
+    isEntered
   });
 }
 
 Select.propTypes = {
   currentValue: PropTypes.object.isRequired,
   setCurrentValue: PropTypes.func.isRequired,
-  values: PropTypes.array.isRequired
+  values: PropTypes.array.isRequired,
+  renderSelectUI: PropTypes.func.isRequired
 };
 
 export default Select;
