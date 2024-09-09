@@ -2,18 +2,22 @@ import { DragDropContext, Droppable } from '@hello-pangea/dnd';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import useUndo from 'use-undo';
 import useFilter from './hooks/useFilter';
 import Task from './Task';
 import TaskForm from './TaskForm';
+import Button from './UI/Button';
+import Counter from './UI/Counter';
 import IconButton from './UI/IconButton';
 import AddIcon from './UI/svg/AddIcon';
 import EmptyState from './UI/svg/EmptyStateIcon';
 import TaskFilter from './UI/TaskFilter';
 
 function TaskList({storageKey}) {
-  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem(storageKey)) || []);
+  const initialTasks = JSON.parse(localStorage.getItem(storageKey)) || [];
+  const [tasks, { set: setTasks, undo: undoTasks, redo: redoTasks, canUndo, canRedo }] = useUndo([...initialTasks]);
   useEffect(() => {
-    localStorage.setItem(storageKey, JSON.stringify(tasks));
+    localStorage.setItem(storageKey, JSON.stringify(tasks.present));
   }, [tasks, storageKey])
   
   const [isAddTaskForm, setIsAddTaskForm] = useState(false);
@@ -26,7 +30,7 @@ function TaskList({storageKey}) {
   ]
   const [filterQuery, setFilterQuery] = useState('');
   const [filterCategory, setFilterCategory] = useState(categories[0]);
-  const filteredTasks = useFilter(filterQuery, filterCategory, tasks);
+  const filteredTasks = useFilter(filterQuery, filterCategory, tasks.present);
   const [isEmptyStateEntered, setIsEmptyStateEntered] = useState(false);
   useEffect(() => {
     if (filteredTasks.length === 0) {
@@ -37,16 +41,16 @@ function TaskList({storageKey}) {
   }, [filteredTasks]);
 
   function toggleCheckbox(id) {
-    setTasks(tasks.map(task => task.id === id ? {...task, completed: !task.completed} : task));
+    setTasks(tasks.present.map(task => task.id === id ? {...task, completed: !task.completed} : task));
   }
   function removeTask(id) {
-    setTasks(tasks.filter(task => task.id !== id));
+    setTasks(tasks.present.filter(task => task.id !== id));
   }
   function addTask(body, setIsEntered) {
     if (body) {
       setIsEntered(false);
       setTimeout(() => {
-        setTasks([...tasks, {id: nanoid(), completed: false, body}]);
+        setTasks([...tasks.present, {id: nanoid(), completed: false, body}]);
         setIsAddTaskForm(false);
       }, 300)
     }
@@ -59,16 +63,16 @@ function TaskList({storageKey}) {
     if (body) {
       setIsEntered(false);
       setTimeout(() => {
-        setTasks(tasks.map(task => task.id !== taskToEdit.id ? task : {...task, body}))
+        setTasks(tasks.present.map(task => task.id !== taskToEdit.id ? task : {...task, body}))
         setIsEditTaskForm(false);
       }, 300)
     } 
   }
   function handleDragEnd(result) {
     if (!result.destination || result.source.index === result.destination.index) return;
-    const sourceIndex = tasks.findIndex(task => task.id === filteredTasks[result.source.index].id);
-    const destinationIndex = tasks.findIndex(task => task.id === filteredTasks[result.destination.index].id);
-    const copiedTasks = [...tasks];
+    const sourceIndex = tasks.present.findIndex(task => task.id === filteredTasks[result.source.index].id);
+    const destinationIndex = tasks.present.findIndex(task => task.id === filteredTasks[result.destination.index].id);
+    const copiedTasks = [...tasks.present];
     const [removedTask] = copiedTasks.splice(sourceIndex, 1);
     copiedTasks.splice(destinationIndex, 0, removedTask);
     setTasks(copiedTasks);
@@ -106,15 +110,45 @@ function TaskList({storageKey}) {
             </div>
           }
           {provided.placeholder}
-          <div className='addButton'>
-            <IconButton onClick={() => {setIsAddTaskForm(true)}}
-                        hoverScale='1.1'
-            >
-              <AddIcon/>
-            </IconButton>
+          <div className='buttons'>
+            <div className='undoButton'>
+              <Button onClick={undoTasks} 
+                      disabled={!canUndo}
+              >
+                <Counter count={tasks.past.length} />
+                ОТМЕНИТЬ
+              </Button>
+            </div>
+            <div className='addButton'>
+              <IconButton onClick={() => {setIsAddTaskForm(true)}}
+                          hoverScale='1.1'
+              >
+                <AddIcon/>
+              </IconButton>
+            </div>
+            <div className='undoButton'>
+              <Button onClick={redoTasks} 
+                      disabled={!canRedo}
+              >
+                <Counter count={tasks.future.length} />
+                ПОВТОРИТЬ
+              </Button>
+            </div>
           </div>
 
           <style jsx>{`
+            .count {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              outline: 1px solid black;
+              width: 1.8em;
+              height: 1.8em;
+              border-radius: 100px;
+              font-size: 1em;
+              margin-right: 10px;
+            }
+
             .taskList {
               width: 100%;
               display: flex;
@@ -127,8 +161,20 @@ function TaskList({storageKey}) {
               margin-bottom: 0.5em;
             }
 
-            .addButton {
+            .buttons {
+              display: flex;
+              align-items: center;
               margin-top: 0.5em;
+              gap: 1em;
+            }
+
+            .undoButton {
+              display: flex;
+              align-items: center;
+              height: 2.5em;
+            }
+
+            .addButton {
               width: 4em;
               height: 4em;
             }

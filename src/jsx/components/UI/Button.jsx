@@ -11,13 +11,16 @@ function Button({children, variant='filled', ...props}) {
 
   <style jsx>{`
     .button {
+      display: flex;
+      align-items: center;
       border: 2px solid ${theme.accent};
       border-radius: 0.4em;
-      padding: 10px 22px;
+      padding: 10px 16px;
       font-weight: 600;
       font-size: 1em;
       cursor: pointer;
       transition: all 0.2s ease;
+      height: 100%;
 
       &.filled {
         background-color: ${theme.accent};
@@ -57,14 +60,23 @@ function Button({children, variant='filled', ...props}) {
       &:active {
         filter: brightness(0.7) contrast(1.1);
       }
+    &:disabled {
+      background-color: ${theme.neutral};
+      border: 2px solid ${theme.neutral};
+      
+      &:hover {
+        background-color: ${theme.neutral};
+        border: 2px solid ${theme.neutral};
+      }
+    }
     }
   `}</style>
   </button>
 }
 
 Button.propTypes = {
-    children: PropTypes.node,
-    variant: PropTypes.string
+  children: PropTypes.node,
+  variant: PropTypes.string
 }
 
 export default Button;

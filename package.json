@@ -13,7 +13,8 @@
     "@hello-pangea/dnd": "^16.6.0",
     "nanoid": "^5.0.7",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "use-undo": "^1.1.1"
   },
   "devDependencies": {
     "@styled-jsx/plugin-sass": "^4.1.0",
