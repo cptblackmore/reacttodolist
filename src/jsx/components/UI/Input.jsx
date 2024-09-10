@@ -1,24 +1,36 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { ThemeContext } from '../../../context/ThemeContext';
+import InputDeleteIcon from './svg/InputDeleteIcon';
 
-function Input({icon, ...props}) {
+function Input({value, setValue, icon, ...props}) {
   const theme = useContext(ThemeContext);
 
-  return <div className='inputWrapper'>
-    <input {...props} className='input' 
+  return <div className='input-wrapper'>
+    <input className='input' 
+           value={value} 
+           onChange={e => {setValue(e.target.value)}}
+           {...props} 
     />
-    {icon 
-     ?
+    {icon && !value
+      ?
     <div className='icon'>
       {icon}
     </div>
-     :
+      :
     null
+    }
+    {value 
+      && 
+    <div className='delete-icon' 
+         onClick={() => {setValue('')}}
+    >
+      <InputDeleteIcon/>
+    </div>
     }
 
     <style jsx>{`
-      .inputWrapper {
+      .input-wrapper {
         position: relative;
         display: flex;
         width: 100%;
@@ -58,11 +70,21 @@ function Input({icon, ...props}) {
         top: 3px;
         bottom: 3px;
       }
+
+      .delete-icon {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        bottom: 5px;
+        cursor: pointer;
+      }
     `}</style>
   </div>
 }
 
 Input.propTypes = {
+  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func.isRequired,
   className: PropTypes.string,
   icon: PropTypes.node
 }

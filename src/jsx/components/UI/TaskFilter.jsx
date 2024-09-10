@@ -6,8 +6,8 @@ import SearchIcon from './svg/SearchIcon';
 function TaskFilter({filterQuery, setFilterQuery, filterCategory, setFilterCategory, categories}) {
   return <div className='filter'>
     <Input value={filterQuery} 
+           setValue={setFilterQuery}
            placeholder='Поиск задачи...' 
-           onChange={e => {setFilterQuery(e.target.value)}}
            icon={<SearchIcon/>}
     />
     <div className='category'>

@@ -27,11 +27,11 @@ function TaskForm({title, body='', setIsOpen, submit}) {
         <div className='content'>
           <h2 className='title'>{title}</h2>
           <div className='input'>
-            <Input value={text}   
-                  placeholder='Введите текст' 
-                  onChange={e => {setText(e.target.value)}}
-                  onKeyDown={e => e.key === 'Enter' && submit(text, setIsEntered)}
-                  autoFocus
+            <Input value={text}
+                   setValue={setText}
+                   placeholder='Введите текст' 
+                   onKeyDown={e => e.key === 'Enter' && submit(text, setIsEntered)}
+                   autoFocus
             />
           </div>
         </div>
