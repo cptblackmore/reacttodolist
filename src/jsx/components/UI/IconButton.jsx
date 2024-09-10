@@ -22,10 +22,12 @@ function IconButton({children, hoverColor, hoverScale=1, ...props}) {
       background-color: transparent;
       border: none;
       cursor: pointer;
-      transition: all 0.5s ease;
+      :global(svg) {
+        transition: transform 0.3s ease;
+      }
 
       :global(path) {
-        transition: all 0.5s ease;
+        transition: all 0.3s ease;
       }
 
       &:focus {
@@ -52,8 +54,11 @@ function IconButton({children, hoverColor, hoverScale=1, ...props}) {
 
     .scalable {
       &:hover {
-        transition: transform 0.5s ease;
-        transform: scale(${hoverScale});
+        :global(svg) {
+          transition: transform 0.5s ease;
+          transform: scale(${hoverScale});
+
+        }
       }
       &:focus-visible {
         transform: scale(${hoverScale});

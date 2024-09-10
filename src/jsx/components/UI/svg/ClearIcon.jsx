@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ThemeContext } from "../../../../context/ThemeContext";
 
-function InputDeleteIcon() {
+function ClearIcon() {
   const theme = useContext(ThemeContext);
 
   return (
@@ -25,4 +25,4 @@ function InputDeleteIcon() {
   );
 }
 
-export default InputDeleteIcon;
+export default ClearIcon;

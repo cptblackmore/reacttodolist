@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { ThemeContext } from '../../../context/ThemeContext';
-import InputDeleteIcon from './svg/InputDeleteIcon';
+import ClearIcon from './svg/ClearIcon';
 
 function Input({value, setValue, icon, ...props}) {
   const theme = useContext(ThemeContext);
+  const inputRef = useRef(null);
 
   return <div className='input-wrapper'>
     <input className='input' 
            value={value} 
+           ref={inputRef}
            onChange={e => {setValue(e.target.value)}}
            {...props} 
     />
@@ -23,9 +25,9 @@ function Input({value, setValue, icon, ...props}) {
     {value 
       && 
     <div className='delete-icon' 
-         onClick={() => {setValue('')}}
+         onClick={() => {setValue(''); inputRef.current.focus()}}
     >
-      <InputDeleteIcon/>
+      <ClearIcon/>
     </div>
     }
 
@@ -45,7 +47,7 @@ function Input({value, setValue, icon, ...props}) {
         width: 100%;
         height: 100%;
         box-sizing: border-box;
-        padding: 0 10px;
+        padding: 0 35px 0 10px;
         font-size: 1.2em;
         caret-color: ${theme.fg};
 
@@ -73,6 +75,7 @@ function Input({value, setValue, icon, ...props}) {
 
       .delete-icon {
         position: absolute;
+        padding: 2px;
         right: 5px;
         top: 5px;
         bottom: 5px;
