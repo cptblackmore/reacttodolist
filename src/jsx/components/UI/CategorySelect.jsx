@@ -59,9 +59,10 @@ function CategorySelect({currentValue, setCurrentValue, values}) {
                         text-align: left;
                         padding: 0 10px;
                         cursor: pointer;
+                        transition: all 0.2s ease;
                         
                         &:active {
-                            filter: brightness(0.9) contrast(1.1);
+                          filter: brightness(0.9) contrast(1.1);
                         }
                         &:focus {
                           outline: 2px solid ${theme.accentTranslucent};
@@ -75,7 +76,7 @@ function CategorySelect({currentValue, setCurrentValue, values}) {
                         &:hover {
                           background-color: ${theme.accentMuted};
                           border: 2px solid ${theme.accentMuted};
-                          transition: background-color 0.2s ease, border 0.2s ease;
+                          transition: all 0.2s ease, border 0.2s ease;
                         }
                         
                         &::before, &::after {
