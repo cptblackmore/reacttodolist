@@ -16,13 +16,17 @@ function App() {
   return (
       <ThemeContext.Provider value={currentTheme}>
         <div className='App'>
-            <Logo/>
-            <TaskList storageKey='tasks1'/>
-            <div className='themes'>
-              <Tooltip text='Выбор темы'>
-                <ThemeSelect currentValue={currentTheme} setCurrentValue={setCurrentTheme} values={themes} />
-              </Tooltip>
+            <div className='header'>
+              <div className='logo'>
+                <Logo/>
+              </div>
+              <div className='themes'>
+                <Tooltip text='Выбор темы'>
+                  <ThemeSelect currentValue={currentTheme} setCurrentValue={setCurrentTheme} values={themes} />
+                </Tooltip>
+              </div>
             </div>
+            <TaskList storageKey='tasks1'/>
         </div>
 
         <style jsx global>{`
@@ -42,10 +46,23 @@ function App() {
             position: relative;
           }
 
+          .header {
+            display: grid;
+            grid-template-columns: 1fr 6fr 1fr;
+            width: 100%;
+            margin-bottom: 1em;
+          }
+
+          .logo {
+            grid-column: 2;
+            justify-self: center;
+            align-self: center;
+          }
+
           .themes {
-            position: absolute;
-            right: 0;
-            top: 0;
+            grid-column: 3;
+            justify-self: right;
+            align-self: center;
             width: 2em;
             height: 2em;
           }

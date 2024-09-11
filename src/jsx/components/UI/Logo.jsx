@@ -7,7 +7,6 @@ function Logo() {
   return <div className='logo'>
     <div className='icon'>
       <LogoIcon/>
-
     </div>
   <h1>ToDo List</h1>
 
@@ -16,7 +15,6 @@ function Logo() {
       display: flex;
       align-items: center;
       height: 2rem;
-      margin-bottom: 1em;
       font-family: 'Optimistic Display', sans-serif;
 
       &>h1 {
@@ -30,6 +28,16 @@ function Logo() {
       align-items: center;
       width: 2em;
       margin-right: 0.5em;
+      animation: rotate 15s linear infinite;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
   `}</style>
 </div>
