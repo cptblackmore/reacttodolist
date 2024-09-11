@@ -2,6 +2,7 @@ import { Draggable } from '@hello-pangea/dnd'
 import PropTypes from 'prop-types'
 import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../../context/ThemeContext'
+import Tooltip from './Tooltip'
 import Checkbox from './UI/Checkbox'
 import IconButton from './UI/IconButton'
 import DeleteIcon from './UI/svg/DeleteIcon'
@@ -46,19 +47,23 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm}) {
           </div>
           <div className={`buttons ${snapshot.isDragging ? 'hidden' : ''}`}>
             <div className='button'>
-              <IconButton hoverColor={theme.accent}
-                          onClick={() => {showEditTaskForm({...task})}}
-              >
-                <EditIcon/>
-              </IconButton>
+              <Tooltip text='Редактирование'>                
+                <IconButton hoverColor={theme.accent}
+                            onClick={() => {showEditTaskForm({...task})}}
+                >
+                  <EditIcon/>
+                </IconButton>
+              </Tooltip>
             </div>
             <div className='button'>
-              <IconButton onClick={handleClick}
-                          hoverColor='rgb(255, 0, 0, 1)'
-                          hoverScale='1'
-              > 
-                <DeleteIcon/>
-              </IconButton>
+              <Tooltip text='Удаление'>
+                <IconButton onClick={handleClick}
+                            hoverColor='rgb(255, 0, 0, 1)'
+                            hoverScale='1'
+                > 
+                  <DeleteIcon/>
+                </IconButton>
+              </Tooltip>
             </div>
           </div>
         </div>

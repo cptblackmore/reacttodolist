@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { themes } from './config/themesConfig';
 import { ThemeContext } from './context/ThemeContext';
 import TaskList from './jsx/components/TaskList';
+import Tooltip from './jsx/components/Tooltip';
 import Logo from './jsx/components/UI/Logo';
 import ThemeSelect from './jsx/components/UI/ThemeSelect';
 import './styles/App.scss';
@@ -18,7 +19,9 @@ function App() {
             <Logo/>
             <TaskList storageKey='tasks1'/>
             <div className='themes'>
-              <ThemeSelect currentValue={currentTheme} setCurrentValue={setCurrentTheme} values={themes} />
+              <Tooltip text='Выбор темы'>
+                <ThemeSelect currentValue={currentTheme} setCurrentValue={setCurrentTheme} values={themes} />
+              </Tooltip>
             </div>
         </div>
 

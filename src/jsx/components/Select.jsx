@@ -19,7 +19,6 @@ function Select({currentValue, setCurrentValue, values, renderSelectUI}) {
   }, [currentIndex, isOpen]);
   
   const handleClick = () => {
-    console.log('test')
     if (isOpen) {
       setIsEntered(false)
       setTimeout(() => setIsOpen(false), 200)

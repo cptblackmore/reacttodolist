@@ -6,6 +6,7 @@ import useUndo from 'use-undo';
 import useFilter from './hooks/useFilter';
 import Task from './Task';
 import TaskForm from './TaskForm';
+import Tooltip from './Tooltip';
 import Button from './UI/Button';
 import Counter from './UI/Counter';
 import IconButton from './UI/IconButton';
@@ -120,11 +121,13 @@ function TaskList({storageKey}) {
               </Button>
             </div>
             <div className='addButton'>
-              <IconButton onClick={() => {setIsAddTaskForm(true)}}
-                          hoverScale='1.1'
-              >
-                <AddIcon/>
-              </IconButton>
+              <Tooltip text='Добавление задачи'>
+                <IconButton onClick={() => {setIsAddTaskForm(true)}}
+                            hoverScale='1.1'
+                >
+                  <AddIcon/>
+                </IconButton>
+              </Tooltip>
             </div>
             <div className='undoButton'>
               <Button onClick={redoTasks} 
