@@ -21,6 +21,7 @@ function Button({children, variant='filled', ...props}) {
       cursor: pointer;
       transition: all 0.2s ease;
       height: 100%;
+      outline: 2px solid transparent;
 
       &.filled {
         background-color: ${theme.accent};
@@ -31,10 +32,10 @@ function Button({children, variant='filled', ...props}) {
         color: ${theme.fg};
       }
       &:focus {
-        outline-color: transparent;
+        outline: 2px solid transparent;
       }
       &:focus-visible {
-        outline-color: transparent;
+        outline: 2px solid ${theme.fg};
 
         &.filled {
           background-color: ${theme.accentMuted};

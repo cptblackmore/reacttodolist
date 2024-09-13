@@ -78,10 +78,18 @@ function TaskList({storageKey}) {
     copiedTasks.splice(destinationIndex, 0, removedTask);
     setTasks(copiedTasks);
   }
+  function handleKeyDown(event) {
+    if (event.ctrlKey && !event.shiftKey && event.keyCode === 90) {
+      undoTasks();
+    }
+    if (event.ctrlKey && event.shiftKey && event.keyCode === 90) {
+      redoTasks();
+    }
+  } 
 
   return <DragDropContext onDragEnd={handleDragEnd}>
     <Droppable droppableId={storageKey}>
-      {(provided) => (
+      {(provided, snapshot) => (
         <div className='taskList' ref={provided.innerRef} {...provided.droppableProps}>
           {isAddTaskForm ? <TaskForm title='Добавление задачи' setIsOpen={setIsAddTaskForm} submit={addTask}/> : null}
           {isEditTaskForm ? <TaskForm title='Редактирование задачи' body={taskToEdit.body} setIsOpen={setIsEditTaskForm} submit={editTask}/> : null}
@@ -93,23 +101,26 @@ function TaskList({storageKey}) {
                         categories={categories} 
             />
           </div>
-          {filteredTasks.length !== 0
-            ?
-            filteredTasks.map((task, index) => {
-              return <Task key={task.id} 
-                           index={index}
-                           task={task} 
-                           toggleCheckbox={toggleCheckbox}
-                           removeTask={removeTask}
-                           showEditTaskForm={showEditTaskForm}
-              />
-            })
-            :
-            <div className={`emptyState ${isEmptyStateEntered ? 'entered' : ''}`}>
-              <EmptyState/>
-              Задачи не найдены...
-            </div>
-          }
+          <div onKeyDown={handleKeyDown}>
+            {filteredTasks.length !== 0
+              ?
+              filteredTasks.map((task, index) => {
+                return <Task key={task.id} 
+                             index={index}
+                             task={task} 
+                             toggleCheckbox={toggleCheckbox}
+                             removeTask={removeTask}
+                             showEditTaskForm={showEditTaskForm}
+                             isDragging={snapshot.isDraggingOver}
+                />
+              })
+              :
+              <div className={`emptyState ${isEmptyStateEntered ? 'entered' : ''}`}>
+                <EmptyState/>
+                Задачи не найдены...
+              </div>
+            }
+          </div>
           {provided.placeholder}
           <div className='buttons'>
             <div className='undoButton'>
@@ -121,7 +132,7 @@ function TaskList({storageKey}) {
               </Button>
             </div>
             <div className='addButton'>
-              <Tooltip text='Добавление задачи'>
+              <Tooltip text='Добавить задачу'>
                 <IconButton onClick={() => {setIsAddTaskForm(true)}}
                             hoverScale='1.1'
                 >

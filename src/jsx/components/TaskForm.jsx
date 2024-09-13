@@ -31,7 +31,7 @@ function TaskForm({title, body='', setIsOpen, submit}) {
                    setValue={setText}
                    placeholder='Введите текст' 
                    onKeyDown={e => e.key === 'Enter' && submit(text, setIsEntered)}
-                   autoFocus
+                   autoFocus={true}
             />
           </div>
         </div>

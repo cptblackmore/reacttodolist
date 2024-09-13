@@ -21,7 +21,7 @@ function App() {
                 <Logo/>
               </div>
               <div className='themes'>
-                <Tooltip text='Выбор темы'>
+                <Tooltip text='Выбрать тему'>
                   <ThemeSelect currentValue={currentTheme} setCurrentValue={setCurrentTheme} values={themes} />
                 </Tooltip>
               </div>

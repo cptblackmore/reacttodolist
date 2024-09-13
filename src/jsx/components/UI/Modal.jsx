@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
+import FocusLock from 'react-focus-lock';
 import { ThemeContext } from '../../../context/ThemeContext';
 
 function Modal({width='500px', isEntered, renderContent}) {
   const theme = useContext(ThemeContext);
 
   return <div className={`modal ${isEntered ? 'entered' : ''}`}>
-    <div className={`modalContent ${isEntered ? 'entered' : ''}`} style={{maxWidth: width}}>
-      {renderContent()}
-    </div>
+    <FocusLock className='modal-focus-lock' returnFocus>
+      <div className={`modalContent ${isEntered ? 'entered' : ''}`} style={{maxWidth: width}}>
+        {renderContent()}
+      </div>
+    </FocusLock>
 
   <style jsx>{`
     .modal {
@@ -29,6 +32,13 @@ function Modal({width='500px', isEntered, renderContent}) {
       &.entered {
         opacity: 1;
       }
+    }
+
+    :global(.modal-focus-lock) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
     }
 
     .modalContent {

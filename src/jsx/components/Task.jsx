@@ -8,14 +8,52 @@ import IconButton from './UI/IconButton'
 import DeleteIcon from './UI/svg/DeleteIcon'
 import EditIcon from './UI/svg/EditIcon'
 
-function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm}) {
+function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm, isDragging}) {
   const theme = useContext(ThemeContext);
   const [isDraggableFocused, setIsDraggableFocused] = useState(false);
   const [isEntered, setIsEntered] = useState(false);
 
-  const handleClick = () => {
+  function handleClick() {
     setIsEntered(false);
     setTimeout(() => removeTask(task.id), 300)
+  }
+  function handleKeyDown(event) {
+    const draggableAreas = [...document.querySelectorAll('.draggable-area')];
+    const currentIndex = draggableAreas.indexOf(event.target);
+  
+    if (event.key === 'Enter') {
+      toggleCheckbox(task.id);
+    }
+    if (event.ctrlKey && event.keyCode === 69) {
+      event.preventDefault();
+      showEditTaskForm({...task});
+    }
+    if (event.key === 'Delete') {
+      const prevElement = draggableAreas[currentIndex - 1];
+
+      setIsEntered(false);
+      setTimeout(() => removeTask(task.id), 300);
+      
+      if (prevElement) {
+        prevElement.focus();
+      }
+    }
+    if (event.key === 'ArrowDown' && !isDragging) {
+      event.preventDefault();
+
+      const nextElement = draggableAreas[currentIndex + 1];
+      if (nextElement) {
+        nextElement.focus();
+      }
+    }
+    if (event.key === 'ArrowUp' && !isDragging) {
+      event.preventDefault();
+
+      const prevElement = draggableAreas[currentIndex - 1];
+      if (prevElement) {
+        prevElement.focus();
+      }
+    }
   }
 
   useEffect(() => {
@@ -39,6 +77,7 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm}) {
             <div className='draggable-area'
                 onFocus={() => {setIsDraggableFocused(true)}}
                 onBlur={() => {setIsDraggableFocused(false)}}
+                onKeyDown={handleKeyDown}
                 {...provided.dragHandleProps} 
                 tabIndex='0'
             >
@@ -47,7 +86,7 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm}) {
           </div>
           <div className={`buttons ${snapshot.isDragging ? 'hidden' : ''}`}>
             <div className='button'>
-              <Tooltip text='Редактирование'>                
+              <Tooltip text='Редактировать'>                
                 <IconButton hoverColor={theme.accent}
                             onClick={() => {showEditTaskForm({...task})}}
                 >
@@ -56,7 +95,7 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm}) {
               </Tooltip>
             </div>
             <div className='button'>
-              <Tooltip text='Удаление'>
+              <Tooltip text='Удалить'>
                 <IconButton onClick={handleClick}
                             hoverColor='rgb(255, 0, 0, 1)'
                             hoverScale='1'
@@ -151,7 +190,8 @@ Task.propTypes = {
   index: PropTypes.number.isRequired,
   showEditTaskForm: PropTypes.func.isRequired,
   toggleCheckbox: PropTypes.func.isRequired,
-  removeTask: PropTypes.func.isRequired
+  removeTask: PropTypes.func.isRequired,
+  isDragging: PropTypes.bool.isRequired
 }
 
 export default Task;

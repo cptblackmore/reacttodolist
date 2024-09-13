@@ -1,11 +1,19 @@
 import PropTypes from 'prop-types';
-import { useContext, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { ThemeContext } from '../../../context/ThemeContext';
 import ClearIcon from './svg/ClearIcon';
 
-function Input({value, setValue, icon, ...props}) {
+function Input({value, setValue, icon, autoFocus, ...props}) {
   const theme = useContext(ThemeContext);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (autoFocus) {
+      setTimeout(() => {
+        inputRef.current.focus();
+      }, 50)
+    }
+  }, [])
 
   return <div className='input-wrapper'>
     <input className='input' 
