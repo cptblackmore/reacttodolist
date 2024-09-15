@@ -12,12 +12,25 @@ function Tooltip({children, text}) {
       const rect = tooltipRef.current.getBoundingClientRect();
       const spaceAbove = rect.top;
       const spaceBelow = window.innerHeight - rect.bottom;
+      // console.log(typeof rect.right, rect.right)
+      // console.log(typeof window.innerWidth, window.innerWidth)
+      // console.log(`${Math.floor(window.innerWidth - rect.right)}px`)
 
       if (spaceBelow < 150 && spaceAbove > spaceBelow) {
         setIsEnoughSpaceBelow(false);
       } else {
         setIsEnoughSpaceBelow(true);
       }
+      // if (window.innerWidth < rect.right) {
+      //   console.log('сдвигай влево')
+      //   console.log(Math.floor(window.innerWidth - rect.right))
+      //   tooltipRef.current.style.transform = `translateX(${Math.floor(window.innerWidth - rect.right) - 70}px)`
+      // } else {
+      //   tooltipRef.current.style.transform = 'translateX(0)'
+      // }
+      // if (rect.left < 10) {
+      //   console.log('сдвигай вправо')
+      // }
     }
   };
 

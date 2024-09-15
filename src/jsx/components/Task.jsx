@@ -75,11 +75,12 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm, isDrag
               />
             </div>
             <div className='draggable-area'
-                onFocus={() => {setIsDraggableFocused(true)}}
-                onBlur={() => {setIsDraggableFocused(false)}}
-                onKeyDown={handleKeyDown}
-                {...provided.dragHandleProps} 
-                tabIndex='0'
+                 onFocus={() => {setIsDraggableFocused(true)}}
+                 onBlur={() => {setIsDraggableFocused(false)}}
+                 onKeyDown={handleKeyDown}
+                 {...provided.dragHandleProps} 
+                 tabIndex='0'
+                 aria-description={task.body}
             >
               <span className='text'>{task.body}</span>
             </div>
@@ -89,6 +90,7 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm, isDrag
               <Tooltip text='Редактировать'>                
                 <IconButton hoverColor={theme.accent}
                             onClick={() => {showEditTaskForm({...task})}}
+                            aria-label='Редактировать задачу'
                 >
                   <EditIcon/>
                 </IconButton>
@@ -99,6 +101,7 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm, isDrag
                 <IconButton onClick={handleClick}
                             hoverColor='rgb(255, 0, 0, 1)'
                             hoverScale='1'
+                            aria-label='Удалить задачу'
                 > 
                   <DeleteIcon/>
                 </IconButton>

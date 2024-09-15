@@ -97,7 +97,8 @@ Input.propTypes = {
   value: PropTypes.string.isRequired,
   setValue: PropTypes.func.isRequired,
   className: PropTypes.string,
-  icon: PropTypes.node
+  icon: PropTypes.node,
+  autoFocus: PropTypes.bool
 }
 
 export default Input;

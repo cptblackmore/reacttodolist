@@ -25,19 +25,20 @@ function TaskForm({title, body='', setIsOpen, submit}) {
   return <Modal isEntered={isEntered} renderContent={() => {
       return <div className='taskForm' ref={taskFormRef}>
         <div className='content'>
-          <h2 className='title'>{title}</h2>
+          <h2 className='title' id='modal-title'>{title}</h2>
           <div className='input'>
             <Input value={text}
                    setValue={setText}
                    placeholder='Введите текст' 
                    onKeyDown={e => e.key === 'Enter' && submit(text, setIsEntered)}
                    autoFocus={true}
+                   aria-labelledby='modal-title'
             />
           </div>
         </div>
         <div className='buttons'>
-          <Button onClick={closeByClick} variant='outlined'>ОТМЕНИТЬ</Button>
-          <Button onClick={() => {submit(text, setIsEntered)}}>ПРИНЯТЬ</Button>
+          <Button onClick={closeByClick} variant='outlined' aria-label='Отменить и закрыть окно'>ОТМЕНИТЬ</Button>
+          <Button onClick={() => {submit(text, setIsEntered)}} aria-label='Принять и закрыть окно'>ПРИНЯТЬ</Button>
         </div>
 
         <style jsx>{`

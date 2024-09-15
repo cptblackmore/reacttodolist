@@ -16,16 +16,19 @@ function App() {
   return (
       <ThemeContext.Provider value={currentTheme}>
         <div className='App'>
-            <div className='header'>
+            <header className='header'>
               <div className='logo'>
                 <Logo/>
               </div>
               <div className='themes'>
                 <Tooltip text='Выбрать тему'>
-                  <ThemeSelect currentValue={currentTheme} setCurrentValue={setCurrentTheme} values={themes} />
+                  <ThemeSelect currentValue={currentTheme} 
+                               setCurrentValue={setCurrentTheme} 
+                               values={themes} 
+                  />
                 </Tooltip>
               </div>
-            </div>
+            </header>
             <TaskList storageKey='tasks1'/>
         </div>
 

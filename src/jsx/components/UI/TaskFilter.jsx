@@ -9,6 +9,7 @@ function TaskFilter({filterQuery, setFilterQuery, filterCategory, setFilterCateg
            setValue={setFilterQuery}
            placeholder='Поиск задачи...' 
            icon={<SearchIcon/>}
+           role='search'
     />
     <div className='category'>
       <CategorySelect currentValue={filterCategory} 

@@ -8,7 +8,11 @@ function Modal({width='500px', isEntered, renderContent}) {
 
   return <div className={`modal ${isEntered ? 'entered' : ''}`}>
     <FocusLock className='modal-focus-lock' returnFocus>
-      <div className={`modalContent ${isEntered ? 'entered' : ''}`} style={{maxWidth: width}}>
+      <div className={`modalContent ${isEntered ? 'entered' : ''}`} 
+           style={{maxWidth: width}} 
+           role='dialog'
+           aria-modal='true'
+      >
         {renderContent()}
       </div>
     </FocusLock>

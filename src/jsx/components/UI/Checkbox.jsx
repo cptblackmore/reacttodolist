@@ -11,6 +11,7 @@ function Checkbox({checked, toggle, iconColor}) {
               tabIndex='0'
               role='checkbox'
               aria-checked={checked}
+              aria-label='Статус выполнения'
               className={`customCheckbox ${checked ? 'checked' : ''}`}
   >
     {checked

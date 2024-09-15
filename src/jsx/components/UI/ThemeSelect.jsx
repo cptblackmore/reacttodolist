@@ -23,6 +23,8 @@ function ThemeSelect({currentValue, setCurrentValue, values}) {
                               tabIndex='1'
                               onClick={handleClick}
                               onKeyDown={handleKeyDown}
+                              role='combobox' 
+                              aria-label='Выбор цветовой темы'
                               ref={selectRef}
                   >
                   <div className='icon'><ThemeIcon/></div>

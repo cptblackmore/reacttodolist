@@ -23,6 +23,8 @@ function CategorySelect({currentValue, setCurrentValue, values}) {
                               onClick={handleClick}
                               onKeyDown={handleKeyDown}
                               ref={selectRef}
+                              role='combobox'
+                              aria-label='Выбор категории'
                   >
                     <div className='text'>
                       {values.find(item => item.value === currentValue.value).text}

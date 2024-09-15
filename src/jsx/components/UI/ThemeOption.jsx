@@ -7,6 +7,7 @@ function ThemeOption({theme, ...props}) {
 
   return <div className='theme'
               tabIndex='1'
+              role='option'
               {...props}
   >
 

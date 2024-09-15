@@ -90,19 +90,19 @@ function TaskList({storageKey}) {
   return <DragDropContext onDragEnd={handleDragEnd}>
     <Droppable droppableId={storageKey}>
       {(provided, snapshot) => (
-        <div className='taskList' ref={provided.innerRef} {...provided.droppableProps}>
+        <section className='taskList' aria-live='polite' ref={provided.innerRef} {...provided.droppableProps}>
           {isAddTaskForm ? <TaskForm title='Добавление задачи' setIsOpen={setIsAddTaskForm} submit={addTask}/> : null}
           {isEditTaskForm ? <TaskForm title='Редактирование задачи' body={taskToEdit.body} setIsOpen={setIsEditTaskForm} submit={editTask}/> : null}
-          <div className='filter'>
+          <header className='filter'>
             <TaskFilter filterQuery={filterQuery} 
                         setFilterQuery={setFilterQuery} 
                         filterCategory={filterCategory} 
                         setFilterCategory={setFilterCategory} 
                         categories={categories} 
             />
-          </div>
-          <div onKeyDown={handleKeyDown}>
-            {filteredTasks.length !== 0
+          </header>
+          <main onKeyDown={handleKeyDown}>
+            {filteredTasks.length !== 0 
               ?
               filteredTasks.map((task, index) => {
                 return <Task key={task.id} 
@@ -115,17 +115,18 @@ function TaskList({storageKey}) {
                 />
               })
               :
-              <div className={`emptyState ${isEmptyStateEntered ? 'entered' : ''}`}>
+              <div role='alert' className={`emptyState ${isEmptyStateEntered ? 'entered' : ''}`}>
                 <EmptyState/>
                 Задачи не найдены...
               </div>
             }
-          </div>
+          </main>
           {provided.placeholder}
-          <div className='buttons'>
+          <div className='buttons' role='group' aria-label='Действия со списком'>
             <div className='undoButton'>
               <Button onClick={undoTasks} 
                       disabled={!canUndo}
+                      aria-label={`Отменить изменения: ${tasks.past.length} шагов`}
               >
                 <Counter count={tasks.past.length} />
                 ОТМЕНИТЬ
@@ -135,6 +136,7 @@ function TaskList({storageKey}) {
               <Tooltip text='Добавить задачу'>
                 <IconButton onClick={() => {setIsAddTaskForm(true)}}
                             hoverScale='1.1'
+                            aria-label='Добавить задачу'
                 >
                   <AddIcon/>
                 </IconButton>
@@ -143,6 +145,7 @@ function TaskList({storageKey}) {
             <div className='undoButton'>
               <Button onClick={redoTasks} 
                       disabled={!canRedo}
+                      aria-label={`Повторить изменения: ${tasks.future.length} шагов`}
               >
                 <Counter count={tasks.future.length} />
                 ПОВТОРИТЬ
@@ -204,7 +207,7 @@ function TaskList({storageKey}) {
               }
             }
           `}</style>
-        </div>
+        </section>
       )}
     </Droppable>
   </DragDropContext>

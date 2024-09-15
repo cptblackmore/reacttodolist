@@ -7,6 +7,7 @@ function Option({children, ...props}) {
   
   return <div className='option'
               tabIndex='0'
+              role='option'
               {...props}
   >
     {children}
