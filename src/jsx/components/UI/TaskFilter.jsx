@@ -31,6 +31,12 @@ function TaskFilter({filterQuery, setFilterQuery, filterCategory, setFilterCateg
         width: 100%;
         max-width: 120px;
       }
+
+      @media (max-width: 500px) {
+        .category {
+          max-width: 80px;
+        }
+      }
     `}</style>
   </div>
 }

@@ -5,6 +5,8 @@ import { ThemeContext } from '../../context/ThemeContext';
 function Tooltip({children, text}) {
   const theme = useContext(ThemeContext);
   const [isEnoughSpaceBelow, setIsEnoughSpaceBelow] = useState(true);
+  const [isArrowVisible, setIsArrowVisible] = useState(true);
+  const [tooltipTransform, setTooltipTransform] = useState('translateX(-50%)');
   const tooltipRef = useRef(null);
 
   const checkSpace = () => {
@@ -12,25 +14,23 @@ function Tooltip({children, text}) {
       const rect = tooltipRef.current.getBoundingClientRect();
       const spaceAbove = rect.top;
       const spaceBelow = window.innerHeight - rect.bottom;
-      // console.log(typeof rect.right, rect.right)
-      // console.log(typeof window.innerWidth, window.innerWidth)
-      // console.log(`${Math.floor(window.innerWidth - rect.right)}px`)
+      const viewportWidth = window.innerWidth;
 
       if (spaceBelow < 150 && spaceAbove > spaceBelow) {
         setIsEnoughSpaceBelow(false);
       } else {
         setIsEnoughSpaceBelow(true);
       }
-      // if (window.innerWidth < rect.right) {
-      //   console.log('сдвигай влево')
-      //   console.log(Math.floor(window.innerWidth - rect.right))
-      //   tooltipRef.current.style.transform = `translateX(${Math.floor(window.innerWidth - rect.right) - 70}px)`
-      // } else {
-      //   tooltipRef.current.style.transform = 'translateX(0)'
-      // }
-      // if (rect.left < 10) {
-      //   console.log('сдвигай вправо')
-      // }
+      if (viewportWidth - 20 < rect.right) {
+        setTooltipTransform(`translateX(-${(rect.width / 2) - (viewportWidth - 20 - rect.right)}px)`)
+        setIsArrowVisible(false);
+      } else if (rect.left < 20) {
+        setTooltipTransform(`translateX(-${(rect.width / 2) + (-20 + rect.left)}px)`)
+        setIsArrowVisible(false);
+      } else {
+        setTooltipTransform(`translateX(-${rect.width / 2}px)`)
+        setIsArrowVisible(true);
+      }
     }
   };
 
@@ -38,17 +38,15 @@ function Tooltip({children, text}) {
     checkSpace();
 
     window.addEventListener('resize', checkSpace);
-    window.addEventListener('scroll', checkSpace);
 
     return () => {
       window.removeEventListener('resize', checkSpace);
-      window.removeEventListener('scroll', checkSpace);
     };
   }, []);
 
   return <div className='tooltip-wrapper'>
     {children}
-    <div ref={tooltipRef} className={`tooltip ${isEnoughSpaceBelow ? 'bottom' : 'top'}`}>{text}</div>
+    <div ref={tooltipRef} className={`tooltip ${isEnoughSpaceBelow ? 'bottom' : 'top'} ${isArrowVisible ? 'arrow' : ''}`}>{text}</div>
 
     <style jsx>{`
       .tooltip-wrapper {
@@ -63,11 +61,11 @@ function Tooltip({children, text}) {
 
       .tooltip {
         position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
         white-space: nowrap;
+        left: 50%;
+        transform: ${tooltipTransform};
         z-index: 100;
-        padding: 3px 10px;
+        padding: 3px 15px;
         background-color: ${theme.fg};
         color: ${theme.bg};
         font-weight: bold;
@@ -92,7 +90,7 @@ function Tooltip({children, text}) {
           }
         }
 
-        &::before {
+        &.arrow::before {
           content: '';
           position: absolute;
           left: 50%;

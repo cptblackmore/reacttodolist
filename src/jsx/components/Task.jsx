@@ -60,7 +60,7 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm, isDrag
     setIsEntered(true);
   }, [])
 
-  return <Draggable draggableId={task.id} key={task.id} index={index}>
+  return <Draggable draggableId={task.id} key={task .id} index={index}>
     {(provided, snapshot) => (
       <div className='draggable-wrapper'
            ref={provided.innerRef} 
@@ -182,7 +182,24 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm, isDrag
           .button {
             width: 2.5em;
             height: 2.5em;
-          }`}</style>
+          }
+
+          @media (max-width: 500px) {
+            .task {
+              padding: 0.2em 0;
+            }
+            .text {
+              font-size: 1.1em;
+            }
+            .buttons {
+              flex-direction: column;
+            }
+            .button {
+              width: 2.3em;
+              height: 2.3em;
+            }
+          }
+        `}</style>
       </div>
     )}
   </Draggable>

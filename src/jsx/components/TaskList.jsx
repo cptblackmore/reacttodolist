@@ -1,8 +1,9 @@
 import { DragDropContext, Droppable } from '@hello-pangea/dnd';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import useUndo from 'use-undo';
+import { ThemeContext } from '../../context/ThemeContext';
 import useFilter from './hooks/useFilter';
 import Task from './Task';
 import TaskForm from './TaskForm';
@@ -21,6 +22,7 @@ function TaskList({storageKey}) {
     localStorage.setItem(storageKey, JSON.stringify(tasks.present));
   }, [tasks, storageKey])
   
+  const theme = useContext(ThemeContext);
   const [isAddTaskForm, setIsAddTaskForm] = useState(false);
   const [isEditTaskForm, setIsEditTaskForm] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(null);
@@ -101,18 +103,19 @@ function TaskList({storageKey}) {
                         categories={categories} 
             />
           </header>
-          <main onKeyDown={handleKeyDown}>
+          <main className='tasks' onKeyDown={handleKeyDown}>
             {filteredTasks.length !== 0 
               ?
               filteredTasks.map((task, index) => {
-                return <Task key={task.id} 
-                             index={index}
-                             task={task} 
-                             toggleCheckbox={toggleCheckbox}
-                             removeTask={removeTask}
-                             showEditTaskForm={showEditTaskForm}
-                             isDragging={snapshot.isDraggingOver}
-                />
+                return <div className='task' key={task.id}>
+                  <Task index={index}
+                        task={task} 
+                        toggleCheckbox={toggleCheckbox}
+                        removeTask={removeTask}
+                        showEditTaskForm={showEditTaskForm}
+                        isDragging={snapshot.isDraggingOver}
+                  />
+                </div>
               })
               :
               <div role='alert' className={`emptyState ${isEmptyStateEntered ? 'entered' : ''}`}>
@@ -128,7 +131,9 @@ function TaskList({storageKey}) {
                       disabled={!canUndo}
                       aria-label={`Отменить изменения: ${tasks.past.length} шагов`}
               >
-                <Counter count={tasks.past.length} />
+                <div className='counter'>
+                  <Counter count={tasks.past.length} />
+                </div>
                 ОТМЕНИТЬ
               </Button>
             </div>
@@ -142,18 +147,65 @@ function TaskList({storageKey}) {
                 </IconButton>
               </Tooltip>
             </div>
-            <div className='undoButton'>
+            <div className='redoButton'>
               <Button onClick={redoTasks} 
                       disabled={!canRedo}
                       aria-label={`Повторить изменения: ${tasks.future.length} шагов`}
               >
-                <Counter count={tasks.future.length} />
+                <div className='counter'>
+                  <Counter count={tasks.future.length} />
+                </div>
                 ПОВТОРИТЬ
               </Button>
             </div>
           </div>
 
           <style jsx>{`
+            .taskList {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+
+            .tasks {
+              width: 100%;
+            }
+
+            .task {
+              position: relative;
+              width: 100%;
+
+              &+.task::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background: linear-gradient(
+                  to right, 
+                  transparent,
+                  ${theme.accentTranslucent} 3%,
+                  ${theme.accentTranslucent} 98%,
+                  transparent
+                );
+              }
+            }
+
+            .filter {
+              width: 100%;
+              margin-bottom: 0.5em;
+            }
+
+            .buttons {
+              display: grid;
+              grid-template-columns: 2fr 1fr 2fr;
+              align-items: center;
+              margin-top: 0.5em;
+              gap: 1em;
+            }
+
             .count {
               display: flex;
               align-items: center;
@@ -165,45 +217,46 @@ function TaskList({storageKey}) {
               font-size: 1em;
               margin-right: 10px;
             }
-
-            .taskList {
-              width: 100%;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-            }
-
-            .filter {
-              width: 100%;
-              margin-bottom: 0.5em;
-            }
-
-            .buttons {
-              display: flex;
-              align-items: center;
-              margin-top: 0.5em;
-              gap: 1em;
-            }
-
+            
             .undoButton {
+              grid-column: 1;
+              justify-self: end;
               display: flex;
-              align-items: center;
+              height: 2.5em;
+            }
+
+            .redoButton {
+              grid-column: 3;
+              justify-self: start;
+              display: flex;
               height: 2.5em;
             }
 
             .addButton {
+              grid-column: 2;
+              justify-self: center;
               width: 4em;
               height: 4em;
             }
 
             .emptyState {
-              margin-top: 20px;
+              margin: 0.5em auto;
               max-width: 170px;
               opacity: 0;
               transition: opacity 1s ease;
 
               &.entered {
                 opacity: 1;
+              }
+            }
+
+            @media (max-width: 500px) {
+              .buttons {
+                gap: 0.2em;
+                font-size: 14px;
+              }
+              .counter {
+                display: none;
               }
             }
           `}</style>

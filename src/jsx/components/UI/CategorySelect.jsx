@@ -65,6 +65,7 @@ function CategorySelect({currentValue, setCurrentValue, values}) {
                         
                         &:active {
                           filter: brightness(0.9) contrast(1.1);
+                          z-index: 200;
                         }
                         &:focus {
                           outline: 2px solid ${theme.accentTranslucent};
@@ -115,8 +116,8 @@ function CategorySelect({currentValue, setCurrentValue, values}) {
                         border-radius: 0.4em;
                         border: 2px solid ${theme.accent};
                         position: absolute;
+                        min-width: 110px;
                         z-index: 99;
-                        left: 0;
                         top: 90%;
                         right: 0;
                         opacity: 0;

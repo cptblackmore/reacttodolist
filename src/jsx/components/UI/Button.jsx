@@ -12,6 +12,8 @@ function Button({children, variant='filled', ...props}) {
   <style jsx>{`
     .button {
       display: flex;
+      height: 100%;
+      min-width: 1px;
       align-items: center;
       border: 2px solid ${theme.accent};
       border-radius: 0.4em;
@@ -20,7 +22,6 @@ function Button({children, variant='filled', ...props}) {
       font-size: 1em;
       cursor: pointer;
       transition: all 0.2s ease;
-      height: 100%;
       outline: 2px solid transparent;
 
       &.filled {

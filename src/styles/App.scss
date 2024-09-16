@@ -7,3 +7,9 @@
   text-align: center;
   font-family:'Optimistic Text', sans-serif
 }
+
+@media (max-width: 500px) {
+  #root {
+    padding: 5px;
+  }
+}
