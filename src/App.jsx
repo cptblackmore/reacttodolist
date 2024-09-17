@@ -73,6 +73,7 @@ function App() {
           body {
             background-color: ${currentTheme.bg};
             color: ${currentTheme.fg};
+            margin: 0;
           }
           `}</style>
       </ThemeContext.Provider>

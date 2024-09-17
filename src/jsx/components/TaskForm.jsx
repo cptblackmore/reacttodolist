@@ -69,6 +69,20 @@ function TaskForm({title, body='', setIsOpen, submit}) {
             justify-content: space-between;
             width: 100%;
           }
+
+          @media (max-width: 500px) {
+            .title {
+              font-size: 22px;
+            }
+
+            .taskForm {
+              gap: 2.5em;
+            }
+
+            .buttons {
+              font-size: 14px;
+            }
+          }
         `}</style>
       </div>
   }}>

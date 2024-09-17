@@ -58,6 +58,12 @@ function Modal({width='500px', isEntered, renderContent}) {
         transform: scale(1);
       }
     }
+
+    @media (max-width: 500px) {
+      .modalContent {
+        margin-bottom: 10em;
+      }
+    }
   `}</style>
   </div>
 }

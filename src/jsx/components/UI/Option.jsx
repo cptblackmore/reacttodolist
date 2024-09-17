@@ -14,7 +14,8 @@ function Option({children, ...props}) {
 
   <style jsx>{`
     .option {
-      padding: 0 10px;
+      padding: 0.2em 0.7em;
+      width: 100%;
       cursor: pointer;
       position: relative;
 

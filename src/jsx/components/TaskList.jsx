@@ -109,7 +109,7 @@ function TaskList({storageKey}) {
               filteredTasks.map((task, index) => {
                 return <div className='task' key={task.id}>
                   <Task index={index}
-                        task={task} 
+                        task={task}
                         toggleCheckbox={toggleCheckbox}
                         removeTask={removeTask}
                         showEditTaskForm={showEditTaskForm}

@@ -60,6 +60,7 @@ function Tooltip({children, text}) {
       }
 
       .tooltip {
+        display: none;
         position: absolute;
         white-space: nowrap;
         left: 50%;

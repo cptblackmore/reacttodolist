@@ -12,6 +12,7 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm, isDrag
   const theme = useContext(ThemeContext);
   const [isDraggableFocused, setIsDraggableFocused] = useState(false);
   const [isEntered, setIsEntered] = useState(false);
+  const [isLargeText, setIsLargeText] = useState(false);
 
   function handleClick() {
     setIsEntered(false);
@@ -57,6 +58,14 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm, isDrag
   }
 
   useEffect(() => {
+    if (task.body.length > 70) {
+      setIsLargeText(true);
+    } else {
+      setIsLargeText(false);
+    }
+  }, [task.body.length])
+
+  useEffect(() => {
     setIsEntered(true);
   }, [])
 
@@ -85,7 +94,7 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm, isDrag
               <span className='text'>{task.body}</span>
             </div>
           </div>
-          <div className={`buttons ${snapshot.isDragging ? 'hidden' : ''}`}>
+          <div className={`buttons ${snapshot.isDragging ? 'hidden' : ''} ${isLargeText ? 'column' : ''}`}>
             <div className='button'>
               <Tooltip text='Редактировать'>                
                 <IconButton hoverColor={theme.accent}
@@ -192,7 +201,9 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm, isDrag
               font-size: 1.1em;
             }
             .buttons {
-              flex-direction: column;
+              &.column {
+                flex-direction: column;
+              }
             }
             .button {
               width: 2.3em;

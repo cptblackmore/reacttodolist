@@ -53,6 +53,7 @@ function CategorySelect({currentValue, setCurrentValue, values}) {
                         align-items: center;
                         background-color: ${theme.accent};
                         border: 2px solid ${theme.accent};
+                        z-index: 99;
                         color: ${theme.bg};
                         border-radius: 0.4em;
                         width: 100%;
@@ -116,15 +117,15 @@ function CategorySelect({currentValue, setCurrentValue, values}) {
                         border-radius: 0.4em;
                         border: 2px solid ${theme.accent};
                         position: absolute;
-                        min-width: 110px;
+                        min-width: 135px;
                         z-index: 99;
                         top: 90%;
-                        right: 0;
+                        right: -2px;
                         opacity: 0;
                         transition: all 0.2s ease;
 
                         &.entered {
-                          top: 115%;
+                          top: 120%;
                           opacity: 1;
                         }
                       }
@@ -156,6 +157,15 @@ function CategorySelect({currentValue, setCurrentValue, values}) {
 
                         &:hover>:global(div) {
                           background-color: transparent;
+                        }
+                      }
+
+                      @media (max-width: 500px) {
+                        .option {
+                          display: flex;
+                          align-items: center;
+                          width: 100%;
+                          height: 2.5em;
                         }
                       }
                   `}</style>
