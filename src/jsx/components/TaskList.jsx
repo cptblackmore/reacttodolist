@@ -23,6 +23,7 @@ function TaskList({storageKey}) {
   }, [tasks, storageKey])
   
   const theme = useContext(ThemeContext);
+  const [isSeparatorEntered, setIsSeparatorEntered] = useState(false);
   const [isAddTaskForm, setIsAddTaskForm] = useState(false);
   const [isEditTaskForm, setIsEditTaskForm] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(null);
@@ -35,6 +36,12 @@ function TaskList({storageKey}) {
   const [filterCategory, setFilterCategory] = useState(categories[0]);
   const filteredTasks = useFilter(filterQuery, filterCategory, tasks.present);
   const [isEmptyStateEntered, setIsEmptyStateEntered] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsSeparatorEntered(true);
+    }, 50) 
+  }, [])
   useEffect(() => {
     if (filteredTasks.length === 0) {
       setIsEmptyStateEntered(true);
@@ -71,7 +78,11 @@ function TaskList({storageKey}) {
       }, 300)
     } 
   }
+  function handleDragStart() {
+    setIsSeparatorEntered(false);
+  }
   function handleDragEnd(result) {
+    setIsSeparatorEntered(true);
     if (!result.destination || result.source.index === result.destination.index) return;
     const sourceIndex = tasks.present.findIndex(task => task.id === filteredTasks[result.source.index].id);
     const destinationIndex = tasks.present.findIndex(task => task.id === filteredTasks[result.destination.index].id);
@@ -89,7 +100,7 @@ function TaskList({storageKey}) {
     }
   } 
 
-  return <DragDropContext onDragEnd={handleDragEnd}>
+  return <DragDropContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
     <Droppable droppableId={storageKey}>
       {(provided, snapshot) => (
         <section className='taskList' aria-live='polite' ref={provided.innerRef} {...provided.droppableProps}>
@@ -107,7 +118,7 @@ function TaskList({storageKey}) {
             {filteredTasks.length !== 0 
               ?
               filteredTasks.map((task, index) => {
-                return <div className='task' key={task.id}>
+                return <div className={`task ${isSeparatorEntered ? 'separator-entered' : ''}`} key={task.id}>
                   <Task index={index}
                         task={task}
                         toggleCheckbox={toggleCheckbox}
@@ -190,6 +201,11 @@ function TaskList({storageKey}) {
                   ${theme.accentTranslucent} 98%,
                   transparent
                 );
+                transition: all 0.5s ease;
+                opacity: 0;
+              }
+              &+.task.separator-entered::after {
+                opacity: 1;
               }
             }
 
