@@ -27,7 +27,7 @@ function Modal({width='500px', isEntered, renderContent}) {
       right: 0;
       bottom: 0;
       left: 0;
-      z-index: 100;
+      z-index: 199;
       padding: 0 20px;
       background-color: rgb(0, 0, 0, 0.7);
       opacity: 0;
