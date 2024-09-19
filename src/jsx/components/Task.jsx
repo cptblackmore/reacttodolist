@@ -1,6 +1,6 @@
 import { Draggable } from '@hello-pangea/dnd'
 import PropTypes from 'prop-types'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { ThemeContext } from '../../context/ThemeContext'
 import Tooltip from './Tooltip'
 import Checkbox from './UI/Checkbox'
@@ -13,10 +13,15 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm, isDrag
   const [isDraggableFocused, setIsDraggableFocused] = useState(false);
   const [isEntered, setIsEntered] = useState(false);
   const [isLargeText, setIsLargeText] = useState(false);
+  const draggableAreaRef = useRef(null);
 
-  function handleClick() {
+  function handleClickToRemove() {
     setIsEntered(false);
     setTimeout(() => removeTask(task.id), 300)
+  }
+  function handleClickToFocus() {
+    draggableAreaRef.current.focus();
+    setIsDraggableFocused(true);
   }
   function handleKeyDown(event) {
     const draggableAreas = [...document.querySelectorAll('.draggable-area')];
@@ -84,6 +89,8 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm, isDrag
               />
             </div>
             <div className='draggable-area'
+                 onClick={handleClickToFocus}
+                 ref={draggableAreaRef}
                  onFocus={() => {setIsDraggableFocused(true)}}
                  onBlur={() => {setIsDraggableFocused(false)}}
                  onKeyDown={handleKeyDown}
@@ -107,7 +114,7 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm, isDrag
             </div>
             <div className='button'>
               <Tooltip text='Удалить'>
-                <IconButton onClick={handleClick}
+                <IconButton onClick={handleClickToRemove}
                             hoverColor='rgb(255, 0, 0, 1)'
                             hoverScale='1'
                             aria-label='Удалить задачу'
@@ -158,6 +165,7 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm, isDrag
 
           .checkbox {
             padding: 0 0.5em;
+            outline: none;
           }
           
           .draggable-area {
@@ -168,6 +176,9 @@ function Task({task, index, toggleCheckbox, removeTask, showEditTaskForm, isDrag
             text-align: start;
             min-height: 2em;
 
+            &:focus {
+              outline: none;
+            }
             &:focus-visible {
               outline: none;
             }
