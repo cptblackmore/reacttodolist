@@ -30,3 +30,7 @@
   <li>Запустите проект: <code>npm run dev -- --host</code></li>
   <li>Перейдите по <a href="http://localhost:5173/"/>localhost:5173</a> на том же устройстве, либо с другого устройства в той же сети, по предложенным адресам в терминале.</li>
 </ul>
+
+<h2>License</h2>
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
