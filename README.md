@@ -13,7 +13,7 @@
 
 > [Ссылка на демо](https://cptblackmore-reacttodolist.netlify.app/)
 
-## Возможности:
+## Возможности
 
 - Добавление/редактирование/удаление/обозначение статуса выполнения
   <br/><br/><img src="https://github.com/user-attachments/assets/3c22bb67-a631-44a9-aaa1-0f0bedd7021c" width="300px"/>
@@ -26,7 +26,7 @@
 - Выбор цветовой темы
   <br/><br/><img src="https://github.com/user-attachments/assets/8c3bad21-65f2-4c96-b1c2-cbe15f4e0160" width="300px"/>
 
-## Инструменты и подходы:
+## Инструменты и подходы
 
 - HTML/CSS/JS
 - React 18.3.1
@@ -39,7 +39,7 @@
 - [react-focus-lock](https://github.com/theKashey/react-focus-lock) - библиотека для изоляции фокуса внутри модальных окон и его возвращения при их закрытии
 - Адаптивная вёрстка
 
-## Установка и запуск:
+## Установка и запуск
 
 - Клонируйте репозиторий: `git clone https://github.com/cptblackmore/reacttodolist`
 - Перейдите в директорию репозитория: `cd reacttodolist`
