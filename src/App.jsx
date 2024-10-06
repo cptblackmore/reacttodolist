@@ -30,6 +30,7 @@ function App() {
               </div>
             </header>
             <TaskList storageKey='tasks1'/>
+            <div className='copyright'>This project was created by <a href='https://github.com/cptblackmore' className='nickname'>cptblackmore</a>. Visit my&nbsp;<a href='https://github.com/cptblackmore/reacttodolist'>repository</a>&nbsp;for details.</div>
         </div>
 
         <style jsx global>{`
@@ -69,7 +70,30 @@ function App() {
             width: 2em;
             height: 2em;
           }
-          
+
+          .copyright {
+            position: fixed;
+            padding: 0.2em;
+            background-color: rgb(100, 100, 100, 0.2);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            color: rgb(150, 150, 150, 0.7);
+
+            &>a {
+              color: rgb(190, 190, 190, 0.7);
+              transition: color 0.1s ease;
+              
+              &.nickname {
+                text-decoration: none;
+              }
+
+              &:hover {
+                color: rgb(250, 250, 250, 0.7);
+              }
+            }
+          }
+
           body {
             background-color: ${currentTheme.bg};
             color: ${currentTheme.fg};
