@@ -9,6 +9,8 @@
 ![status](https://img.shields.io/website?url=https%3A%2F%2Fcptblackmore-reacttodolist.netlify.app%2F
 )
 
+- [English version of README](./README.en.md)
+
 Готовый пет-проект в виде многофункционального списка задач. Создан мною с нуля на React, как и большая часть компонентов.
 
 > [Ссылка на демо](https://cptblackmore-reacttodolist.netlify.app/)
