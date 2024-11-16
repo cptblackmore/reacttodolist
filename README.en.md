@@ -9,7 +9,7 @@
 ![status](https://img.shields.io/website?url=https%3A%2F%2Fcptblackmore-reacttodolist.netlify.app%2F
 )
 
-- [English version of README](./README.en.md)
+- [Русская версия README](./README.md)
 
 A finished pet project of a multifunctional to-do list. Created by me from scratch using React, along with most of the components.
 
