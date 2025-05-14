@@ -6,18 +6,20 @@ function useCloseByClickOutside(ref, setIsOpen, setIsEntered) {
       if (ref.current && !ref.current.contains(event.target)) {
         if (setIsEntered) {
           setIsEntered(false);
-          setTimeout(() => {setIsOpen(false)}, 300);
+          setTimeout(() => {
+            setIsOpen(false);
+          }, 300);
         } else {
           setIsOpen(false);
         }
       }
     }
-    
-    document.addEventListener('mousedown', handleClick);
+
+    document.addEventListener("mousedown", handleClick);
     return () => {
-      document.removeEventListener('mousedown', handleClick);
-    }
-  }, [ref, setIsOpen])
+      document.removeEventListener("mousedown", handleClick);
+    };
+  }, [ref, setIsOpen]);
 }
 
 export default useCloseByClickOutside;

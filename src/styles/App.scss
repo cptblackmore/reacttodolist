@@ -1,11 +1,11 @@
-@import 'fonts';
+@import "fonts";
 
 #root {
   max-width: 780px;
   margin: 0 auto;
   padding: 15px;
   text-align: center;
-  font-family:'Optimistic Text', sans-serif
+  font-family: "Optimistic Text", sans-serif;
 }
 
 @media (max-width: 500px) {

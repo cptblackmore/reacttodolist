@@ -5,7 +5,12 @@ function LogoIcon() {
   const theme = useContext(ThemeContext);
 
   return (
-    <svg className='logo' xmlns="http://www.w3.org/2000/svg" viewBox="-11.5 -10.232 23 20.463" preserveAspectRatio="xMidYMid meet">
+    <svg
+      className="logo"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="-11.5 -10.232 23 20.463"
+      preserveAspectRatio="xMidYMid meet"
+    >
       <circle r="2.05"></circle>
       <g fill="none">
         <ellipse rx="11" ry="4.2"></ellipse>
@@ -13,12 +18,12 @@ function LogoIcon() {
         <ellipse rx="11" ry="4.2" transform="rotate(120)"></ellipse>
       </g>
 
-    <style jsx>{`
-      .logo {
-        fill: ${theme.accent};
-        stroke: ${theme.accent};
-      }
-    `}</style>
+      <style jsx>{`
+        .logo {
+          fill: ${theme.accent};
+          stroke: ${theme.accent};
+        }
+      `}</style>
     </svg>
   );
 }

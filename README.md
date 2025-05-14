@@ -4,10 +4,8 @@
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 <br/>
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
-![W3C](https://img.shields.io/w3c-validation/html?targetUrl=https%3A%2F%2Fcptblackmore-reacttodolist.netlify.app%2F
-)
-![status](https://img.shields.io/website?url=https%3A%2F%2Fcptblackmore-reacttodolist.netlify.app%2F
-)
+![W3C](https://img.shields.io/w3c-validation/html?targetUrl=https%3A%2F%2Fcptblackmore-reacttodolist.netlify.app%2F)
+![status](https://img.shields.io/website?url=https%3A%2F%2Fcptblackmore-reacttodolist.netlify.app%2F)
 
 - [English version of README](./README.en.md)
 
@@ -68,7 +66,8 @@
 
 ## Author
 
-**Victor** *aka* **captain_blackmore**
+**Victor** _aka_ **captain_blackmore**
+
 - [Telegram](https://t.me/captain_blackmore)
 - [Github](https://github.com/cptblackmore)
 
@@ -79,6 +78,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 ### Acknowledgements
 
 This project makes use of the following open-source libraries:
+
 - [nanoid](https://github.com/ai/nanoid) - Licensed under the [MIT](https://github.com/ai/nanoid?tab=MIT-1-ov-file#readme).
 - [@hello-pangea/dnd](https://github.com/hello-pangea/dnd) - Licensed under the [Apache 2.0](https://github.com/hello-pangea/dnd?tab=License-1-ov-file#readme).
 - [use-undo](https://github.com/homerchen19/use-undo) - Licensed under the [MIT](https://github.com/homerchen19/use-undo?tab=MIT-1-ov-file#readme).
