@@ -9,8 +9,8 @@ function ThemeOption({ theme, ...props }) {
     <div className="theme" tabIndex="1" role="option" {...props}>
       <style jsx>{`
         .theme {
-          width: 100%;
-          height: 100%;
+          width: 2em;
+          aspect-ratio: 1 / 1;
           position: relative;
 
           &::after {

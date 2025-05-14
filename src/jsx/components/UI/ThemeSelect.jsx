@@ -111,6 +111,7 @@ function ThemeSelect({ currentValue, setCurrentValue, values }) {
               .dropdown {
                 position: absolute;
                 display: flex;
+                align-items: center;
                 top: 0;
                 right: 100%;
                 bottom: 0;
@@ -132,7 +133,6 @@ function ThemeSelect({ currentValue, setCurrentValue, values }) {
               .option {
                 position: relative;
                 width: 2em;
-                height: 100%;
 
                 & + .option ::after {
                   content: "";
