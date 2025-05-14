@@ -1,68 +1,98 @@
 # React ToDo List
 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+[![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vite.dev/)
 <br/>
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 ![W3C](https://img.shields.io/w3c-validation/html?targetUrl=https%3A%2F%2Fcptblackmore-reacttodolist.netlify.app%2F)
-![status](https://img.shields.io/website?url=https%3A%2F%2Fcptblackmore-reacttodolist.netlify.app%2F)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7285daaa-8f77-4875-8435-67345826f5c3/deploy-status)](https://app.netlify.com/projects/cptblackmore-reacttodolist/deploys)
 
 - [Русская версия README](./README.md)
 
-A finished pet project of a multifunctional to-do list. Created by me from scratch using React, along with most of the components.
+A functional task manager with a minimalist interface. Built from scratch with React, including most components and business logic.
 
 > [Live Demo](https://cptblackmore-reacttodolist.netlify.app/)
 
 ## Features
 
-- Add/edit/delete/mark tasks as complete
-  <br/><br/><img src="https://github.com/user-attachments/assets/3c22bb67-a631-44a9-aaa1-0f0bedd7021c" width="300px"/>
-- Filter tasks via a search bar and/or category toggles
-  <br/><br/><img src="https://github.com/user-attachments/assets/219c96c3-542d-47e0-a28d-563adac6667a" width="300px"/>
-- Rearrange tasks by dragging with the cursor or using the "Space" key with "Up"/"Down" arrows
-  <br/><br/><img src="https://github.com/user-attachments/assets/a86690d8-026b-477f-abd2-ba47c1080f7a" width="300px"/>
-- Undo and redo any actions that modify the list
-  <br/><br/><img src="https://github.com/user-attachments/assets/27753b1a-b295-4bfe-8a45-816501aea91c" width="300px"/>
-- Switch between light and dark themes
-  <br/><br/><img src="https://github.com/user-attachments/assets/8c3bad21-65f2-4c96-b1c2-cbe15f4e0160" width="300px"/>
+- Add, edit, delete, and mark tasks as completed.
 
-## Tools and Approaches
+    <img src="https://github.com/user-attachments/assets/3c22bb67-a631-44a9-aaa1-0f0bedd7021c" width="370px" alt="Add, edit, delete, mark tasks"/>
 
-- HTML/CSS/JS
-- React 18.3.1
-- Vite
-- styled-jsx (CSS-in-JS)
-- SCSS (mainly for nesting)
-- [nanoid](https://github.com/ai/nanoid) - a generator for unique short IDs
-- [@hello-pangea/dnd](https://github.com/hello-pangea/dnd) - drag-n-drop library (fork of [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd))
-- [use-undo](https://github.com/homerchen19/use-undo) - library for managing undo/redo state changes
-- [react-focus-lock](https://github.com/theKashey/react-focus-lock) - library for focus isolation inside modal dialogs with return focus support
-- Responsive design
+- Filter tasks via search and/or category selection.
+
+    <img src="https://github.com/user-attachments/assets/219c96c3-542d-47e0-a28d-563adac6667a" width="370px" alt="Filter tasks"/>
+
+- Drag-and-drop task reordering via touch, mouse, or keyboard (`Space` + `↑`/`↓`).
+
+    <img src="https://github.com/user-attachments/assets/a86690d8-026b-477f-abd2-ba47c1080f7a" width="370px" alt="Drag-n-drop tasks"/>
+
+- Undo and redo any action performed on the list.
+
+    <img src="https://github.com/user-attachments/assets/27753b1a-b295-4bfe-8a45-816501aea91c" width="370px" alt="Undo/redo task list actions"/>
+
+- Theme selection (light/dark).
+
+    <img src="https://github.com/user-attachments/assets/8c3bad21-65f2-4c96-b1c2-cbe15f4e0160" width="370px" alt="Theme selection"/>
+
+## Stack
+
+#### Languages and architecture
+
+- **HTML / CSS / JS**
+- **React 18.3.1**
+
+#### Building and development
+
+- **Vite** for bundling and dev server
+- **ESLint** with **Prettier** setup for consistent code style
+
+#### Styling
+
+- **styled-jsx** (CSS-in-JS)
+- **SCSS** (used for nesting and maintaining a clean style structure)
+
+#### Libraries
+
+- [nanoid](https://github.com/ai/nanoid) — generates short unique IDs
+- [@hello-pangea/dnd](https://github.com/hello-pangea/dnd) — drag-n-drop API ([react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) fork)
+- [use-undo](https://github.com/homerchen19/use-undo) — manages undo/redo history state
+- [react-focus-lock](https://github.com/theKashey/react-focus-lock) — controls focus behavior in modals
+
+#### Design and UX
+
+- **Responsive layout** for all screen sizes
+- **Hotkeys** for reordering, undo/redo, navigation, etc.
+- **Drag-n-drop** (support across devices)
 
 ## Getting Started
 
-- Clone the repository: `git clone https://github.com/cptblackmore/reacttodolist`
-- Navigate to the repository directory: `cd reacttodolist`
-- Install dependencies: `npm install`
-- Start the project: `npm run dev -- --host`
-- Open [localhost:5173](http://localhost:5173/) on the same device, or use the addresses shown in the terminal from another device on your network.
+0. Make sure you have:
+    - Node.js **v18 or later** — [download from nodejs.org](https://nodejs.org/)
+    - Git — [download from git-scm.com](https://git-scm.com/)
+1. Clone the repository: `git clone https://github.com/cptblackmore/reacttodolist`
+2. Navigate into the directory: `cd reacttodolist`
+3. Install dependencies: `npm install`
+4. Start the project: `npm run dev -- --host`
+5. Vite will display local network access links in the terminal:
+    - `http://localhost:5173` — for the current device
+    - `http://<Network-IP>:5173` — for devices on the same LAN (e.g. smartphone testing)
 
 ## Project Highlights
 
-- Drag-n-drop is implemented for tasks. It works with the cursor, long taps on mobile devices, and keyboard keys: "Space" for selection and "Up"/"Down" arrows for moving tasks.
-- Tasks can also be navigated with "Up"/"Down" arrow keys for convenience when using the keyboard.
-- Additional hotkeys are supported when a task is focused: delete - Del; edit - Ctrl+E; mark as complete - Enter.
-- The task list and selected theme are saved in the browser's localStorage. The undo/redo history is not stored in the browser.
-- Theme switching is implemented using React Context, enabling easy theme propagation to any component, regardless of its nesting level.
-- The same logic component is used for both category and theme selectors, extracted using the Render Props pattern.
+- **Drag-and-drop**: supported via tap, pointer, and keyboard (`Space` to select, `↑`/`↓` to move).
+- **Hotkey support**: `Delete` — remove task, `Ctrl+E` — edit, `Enter` — mark as done. Task focus is keyboard-navigable via `↑`/`↓`
+- **Storage**: tasks and selected theme persist in `localStorage`. Undo/redo history is session-only.
+- **Theme switching**: implemented with React Context, making it accessible at any nesting level.
+- **Render Props pattern**: selection logic is encapsulated in a smart wrapper, allowing UI variations (themes, categories) without duplicating behavior.
 
-### Improvement Ideas
+## Future Improvements
 
-- Revamp the theme selection menu to allow separate selection of light/dark modes and color schemes, with corresponding labels.
-- Add a notification when trying to save an empty task in add/edit forms.
-- Include a delete confirmation requiring a second click on the trash icon to avoid accidental deletions due to misclicks.
-- Make input fields in forms "expandable" based on the entered text or replace them with textareas.
-- Enhance hotkey functionality for managing tasks and the list, and provide a user-friendly hotkey guide.
+- **Split theme selection**: split light/dark toggle from color scheme selection, and add labels for each option.
+- **Empty task warning**: notify users when trying to save a task with an empty title.
+- **Task deletion confirmation**: require a second click on the delete icon to avoid accidental removals.
+- **Auto-expanding inputs**:  make inputs responsive to content or switch to an auto-resizing `textarea`
+- **Hotkey support & reference**: extend the hotkey list and add a UI hint for all available shortcuts.
 
 ## Author
 
